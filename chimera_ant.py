@@ -40,20 +40,13 @@ class ChimeraQueen():
             print(f'''A rainha {self.name} teve um filho quimera
                   de humano com {chield.second_animal}
                   chamado {chield.name} que pode usar nen''')
-            self.chields.append(chield)
         else:
             chield = ChimeraAnt(name, choice(self._belly), choice(self._belly), birth_date)
             print(f'''A rainha {self.name} teve um filho quimera
                   de {chield.first_animal} com {chield.second_animal}
                   chamado {chield.name} ''')
-            self.chields.append(chield)
+        self.chields.append(chield)
 
     def __str__(self) -> str:
         return f'{self.name}'
     
-
-ant = ChimeraQueen('rainha', 23213)
-ant.eat('human')
-ant.having_children('felipe', 'yfvgbkj')
-ant.chields[0]._nen_baptism()
-ant.chields[0].get_nen_percents()

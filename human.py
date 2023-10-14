@@ -11,3 +11,6 @@ class Human(Nen):
 
     def __str__(self) -> str:
         return f"{self.name}"
+    
+    def use_skill(self, victim):
+        print(f"{self.name} usou sua habilidade: {self.skill_name} em {victim}")

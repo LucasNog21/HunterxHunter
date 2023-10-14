@@ -69,7 +69,8 @@ class Specialization(Abstract_nen_class):
         return 'Specialization'
 
 class Hatsu(Enhancement, Transmutation, Conjuration, Emission, Manipulation, Specialization):
-  descricao = ''
+  skill_description = ''
+  skill_name = ''
   nen_percent_model = [80, 60, 40, 60, 80, 100]
   list_break = randint(0, 5)
   def __init__(self) -> None:
@@ -77,13 +78,13 @@ class Hatsu(Enhancement, Transmutation, Conjuration, Emission, Manipulation, Spe
         
         self._sort_nen_percents()
 
-  def __random_hatsu_lsit(self):
+  def __random_hatsu_list(self):
       start = self._types[:self.list_break]
       end = self._types[self.list_break:]
       self._types = end + start
 
   def _sort_nen_percents(self):
-        self.__random_hatsu_lsit()
+        self.__random_hatsu_list()
         if isinstance(self._types[-1], Specialization):
           self._types[-1].set_percent(100)
         for x in range(6):
