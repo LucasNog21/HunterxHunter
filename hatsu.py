@@ -17,7 +17,7 @@ class Abstract_nen_class():
         self.__domain += 1
     else: print('Você atingiu seu domínio máximo!')
 
-  def get_percent(self):
+  def get_percent(self) -> int:
     return self.__percent
 
   def set_percent(self, new_percent) -> None :
@@ -27,63 +27,69 @@ class Abstract_nen_class():
 
 
 class Enhancement(Abstract_nen_class):
-      def __init__(self):
+      def __init__(self) -> None:
         super().__init__()
 
       def __str__(self) -> str:
         return 'Enhancement'
 
 class Transmutation(Abstract_nen_class):
-      def __init__(self):
+      def __init__(self) -> None:
         super().__init__()
       
       def __str__(self) -> str:
         return 'Transmutation'
 
 class Conjuration(Abstract_nen_class):
-      def __init__(self):
+      def __init__(self) -> None:
         super().__init__()
 
       def __str__(self) -> str:
         return 'Conjuration'
 
 class Emission(Abstract_nen_class):
-      def __init__(self):
+      def __init__(self) -> None:
         super().__init__()
 
       def __str__(self) -> str:
         return 'Emission'
 
 class Manipulation(Abstract_nen_class):
-      def __init__(self):
+      def __init__(self) -> None:
         super().__init__()
 
       def __str__(self) -> str:
          return 'Manipulation'
 
 class Specialization(Abstract_nen_class):
-      def __init__(self):
+      def __init__(self) -> None:
         super().__init__()
 
       def __str__(self) -> str:
         return 'Specialization'
 
 class Hatsu(Enhancement, Transmutation, Conjuration, Emission, Manipulation, Specialization):
-  skill_description = ''
-  skill_name = ''
-  nen_percent_model = [80, 60, 40, 60, 80, 100]
-  list_break = randint(0, 5)
+  nen_percent_model: list[int] = [80, 60, 40, 60, 80, 100]
+  list_break: int = randint(0, 5)
   def __init__(self) -> None:
-        self._types = [Manipulation(), Emission(), Enhancement(), Transmutation(), Conjuration(), Specialization()]
+        self._types: list = [Manipulation(), Emission(), Enhancement(), Transmutation(), Conjuration(), Specialization()]
+        self.skill_description: str = ''
+        self.skill_name: str = ''
         
         self._sort_nen_percents()
 
-  def __random_hatsu_list(self):
+  def set_skill_name(self, name:str) -> None:
+      self.skill_name = name
+
+  def set_skill_description(self, description:str) -> None:
+      self.skill_description = description
+
+  def __random_hatsu_list(self) -> None:
       start = self._types[:self.list_break]
       end = self._types[self.list_break:]
       self._types = end + start
 
-  def _sort_nen_percents(self):
+  def _sort_nen_percents(self) -> None:
         self.__random_hatsu_list()
         if isinstance(self._types[-1], Specialization):
           self._types[-1].set_percent(100)

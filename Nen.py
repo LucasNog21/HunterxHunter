@@ -7,7 +7,7 @@ class Nen(Hatsu):
       self.__ten: int = 0
       self.__zetsu: int = 0
       self.__ren: int = 0
-      self._chance = int = 0
+      self._chance: int = 0
       
 
   def _nen_baptism(self) -> None:
@@ -29,13 +29,13 @@ class Nen(Hatsu):
     self._chance = (self.get_ten() + self.get_ren() + self.get_zetsu())//3
     return self._chance
 
-  def get_ten(self):
+  def get_ten(self) -> int:
     return self.__ten
 
-  def get_zetsu(self):
+  def get_zetsu(self) -> int:
     return self.__zetsu
 
-  def get_ren(self):
+  def get_ren(self) -> int:
     return self.__ren
 
   def get_nen_percents(self) -> None:

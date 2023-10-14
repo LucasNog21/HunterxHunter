@@ -6,7 +6,7 @@ class Zodiac(Hunter):
         self.animal: str = animal
         self.register_date: str = register_date
 
-    def meeting(self):
+    def meeting(self) -> None:
         print(f'Zôdiaco {self.name} está em reunião')
 
     def __str__(self) -> str:

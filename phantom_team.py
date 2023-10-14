@@ -7,7 +7,7 @@ class PhantomTeamMember(Human):
         self.__number = 0
         self.__is_leader: bool = False
 
-    def set_number(self, number):
+    def set_number(self, number) -> None:
         if number in range(1, 13):
             self.__number = number
         else: print('Numero inválido')
@@ -19,5 +19,5 @@ class PhantomTeamMember(Human):
     def stealing(self, victim) -> None:
         print(f'{self.name} is stealing {victim}')
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'Trupe fantasma número {self.number} : {self.name}'

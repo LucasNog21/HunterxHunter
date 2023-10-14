@@ -2,32 +2,32 @@ from random import choice
 from human import Human
 
 class ChimeraAnt(Human):
-    def __init__(self, name, first_animal: str, second_animal: str, birth_date: str) -> None:
-        self.name = name
-        self.first_animal = first_animal
-        self.second_animal = second_animal
-        self.__birth_date = birth_date
+    def __init__(self, name: str, first_animal: str, second_animal: str, birth_date: str) -> None:
+        self.name: str = name
+        self.first_animal: str = first_animal
+        self.second_animal: str = second_animal
+        self.__birth_date: str = birth_date
 
         self._can_use_nen()
 
-    def get_birth_date(self):
+    def get_birth_date(self) -> int:
         return self.__birth_date
 
-    def _can_use_nen(self):
+    def _can_use_nen(self) -> None:
         if self.first_animal == 'human':
             Human.__init__(self, self.name, self.get_birth_date())
 
-    def __str__(self) -> None:
+    def __str__(self) -> str:
         return super().__str__()
 
 class ChimeraQueen():
-    def __init__(self, name:str , birth_date: int) -> None:
+    def __init__(self, name:str , birth_date: str) -> None:
         self.name: str = name
-        self.__birth_date: int = birth_date
+        self.__birth_date: str = birth_date
         self._belly: list[str] = []
         self.chields : list[ChimeraAnt] = []
 
-    def get_birth_date(self) -> int:
+    def get_birth_date(self) -> str:
         return self.__birth_date
     
     def eat(self, food:str) -> None:
