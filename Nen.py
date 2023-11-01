@@ -9,6 +9,8 @@ class Nen(Hatsu):
       self.__ren: int = 0
       self._chance: int = 0
       
+  def is_awake(self):
+    return self.__is_awakening
 
   def _nen_baptism(self) -> None:
       if not self.__is_awakening:
@@ -57,5 +59,3 @@ class Nen(Hatsu):
     if self.get_ren() < 100:
       self.__ren += 2
     else: print('Seu treino falhou')
-
-
