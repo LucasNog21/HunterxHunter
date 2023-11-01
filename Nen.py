@@ -12,6 +12,14 @@ class Nen(Hatsu):
   def is_awake(self):
     return self.__is_awakening
 
+  def post_mortem(self):
+    if is_awake():
+      self.__ten = 100
+      self.__zetsu = 100
+      self.ren = 100
+      for category in self._types:
+        category._percent = 100
+
   def _nen_baptism(self) -> None:
       if not self.__is_awakening:
           self.__is_awakening = True
