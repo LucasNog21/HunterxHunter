@@ -6,6 +6,9 @@ class Zodiac(Hunter):
         self.animal: str = animal
         self.register_date: str = register_date
 
+    def hunting(self) -> None:
+        print(f'O zôdiaco {self.name} está caçando no ambito da {self.category}')
+
     def meeting(self) -> None:
         print(f'Zôdiaco {self.name} está em reunião')
 

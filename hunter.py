@@ -9,7 +9,7 @@ class Hunter(Human):
         self._tiket: bool = True
 
     def hunting(self) -> None:
-        print(f'{self.name} is hunting')
+        print(f'{self.name} está caçando')
 
     def sell_tiket(self) -> None:
         if self._tiket:

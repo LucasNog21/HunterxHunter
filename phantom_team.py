@@ -1,7 +1,7 @@
 from human import Human
 
 class PhantomTeamMember(Human):
-    def __init__(self, register_date: str, category: str, name: str, birth_date: int) -> None:
+    def __init__(self, register_date: str, name: str, birth_date: int) -> None:
         super().__init__(name, birth_date),
         self.register_date: str = register_date
         self.__number = 0
