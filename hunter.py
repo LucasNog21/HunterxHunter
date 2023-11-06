@@ -11,10 +11,12 @@ class Hunter(Human):
     def hunting(self) -> None:
         print(f'{self.name} está caçando')
 
-    def sell_tiket(self) -> None:
+    def sell_ticket(self) -> None:
         if self._tiket:
             self.money += 100_000
             self._tiket = False
+
+            print(f"{self.name} não tem mais sua liçença hunter, mas ganhou uma boa grana.")
 
     def __str__(self) -> str:
         return f'Hunter {self.category} : {self.name}'

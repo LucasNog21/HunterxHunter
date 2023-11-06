@@ -37,9 +37,7 @@ class ChimeraQueen():
     def having_children(self, name, birth_date) -> None:
         if 'human' in self._belly or 'humano' in self._belly:
             chield = ChimeraAnt(name, 'human', choice(self._belly), birth_date)
-            print(f'''A rainha {self.name} teve um filho quimera
-                  de humano com {chield.second_animal}
-                  chamado {chield.name} que pode usar nen''')
+            print(f'A rainha {self.name} teve um filho quimera de humano com {chield.second_animal} chamado {chield.name} que pode usar nen')
         else:
             chield = ChimeraAnt(name, choice(self._belly), choice(self._belly), birth_date)
             print(f'''A rainha {self.name} teve um filho quimera
