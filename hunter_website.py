@@ -2,7 +2,7 @@ from tkinter import *
 from register_user import Registro
 from login import Login
 
-class Menu:
+class Website:
     def __init__(self,mestre):
         self.mestre = mestre
         self.c1 = Frame(self.mestre)
@@ -10,7 +10,7 @@ class Menu:
         self.c1["pady"] = 10
         self.c1.pack()
 
-        self.titulo = Label(self.c1, text = "Menu")
+        self.titulo = Label(self.c1, text = "Bem vindo ao Hunter Website\n ")
         self.titulo["font"] = ("Arial", "10", "bold")
         self.titulo.pack()
 
@@ -39,5 +39,5 @@ class Menu:
 
 if __name__ == "__main__":
     raiz = Tk()
-    Menu(raiz)
+    Website(raiz)
     raiz.mainloop()

@@ -1,11 +1,12 @@
 from tkinter import *
 from tkinter import messagebox
-from menu_post_login import Menu_login
+from menu_login import Menu_login
 import pickle
 
 class Login:
     def __init__(self, mestre):
         self.mestre = mestre
+        self.file_name = "HunterxHunter\list_register.txt"
         self.c1 = Frame(self.mestre)
         self.c1["padx"] = 100
         self.c1["pady"] = 10
@@ -36,10 +37,9 @@ class Login:
         self.botao.pack()
 
     def logar(self):
-        self.file_name = "HunterxHunter\list_register.txt"
         self.username = self.l2.get()
         self.password = self.l3.get()
-        self.name_in = False
+        self.username_in = False
         self.password_in = False
 
         with open(self.file_name, 'rb') as file: 
@@ -55,7 +55,7 @@ class Login:
             for user in list_users:
                 if user.username == self.username:
                     self.username_in = True
-                    if user.password == self.password:
+                    if user.get_password() == self.password:
                         self.password_in = True
 
             if self.username_in and self.password_in:
@@ -70,7 +70,7 @@ class Login:
 
 def abrir_menu(self):
         raiz_menu = Tk()
-        Menu_login(raiz_menu)
+        Menu_login(raiz_menu, self.username, self.password)
         raiz_menu.mainloop()
 
 

@@ -2,9 +2,12 @@ from tkinter import *
 from tkinter import messagebox
 from user import User
 import pickle
+
 class Registro:
     def __init__(self, mestre):
         self.mestre = mestre
+        self.list_users = []
+        self.file_name = "HunterxHunter\list_register.txt"
         self.c1 = Frame(self.mestre)
         self.c1["padx"] = 100
         self.c1["pady"] = 10
@@ -62,10 +65,10 @@ class Registro:
         self.botao = Button(self.c4, text = "Autenticar")
         self.botao["command"] = self.autenticar
         self.botao.pack()
-
+    
+    
 
     def autenticar(self):
-        self.file_name = "HunterxHunter\list_register.txt"
         self.username_in = False
         self.username = self.l2.get()
         self.password = self.l3.get()
@@ -74,21 +77,7 @@ class Registro:
         self.name = self.l6.get()
         self.birth_date = self.l7.get()
 
-        with open(self.file_name, 'rb') as file: 
-            list_users = []
-            while True:
-                try:
-                    user = pickle.load(file)
-                    list_users.append(user)
-
-                except EOFError:
-                    break
-        
-        for user in list_users:
-            if user.username == self.username:
-                self.username_in = True
-
-        if not self.username_in:
+        if self.verify_register() == False:
 
             try:
                 self.registrar(self.file_name, self.username, self.password, self.hunter_exam_date, self.category, self.name, self.birth_date)
@@ -96,15 +85,31 @@ class Registro:
             except FileNotFoundError:
                 messagebox.showinfo("Arquivo inexistente",f"O arquivo {self.file_name} não foi encontrado.")
 
-        else:
-            messagebox.showinfo("Erro","Nome de usuário já utilizado. Tente outro nome")
 
     def registrar(self, file_name, username, password, hunter_exam_date, category, name, birth_date):
-        with open(file_name, 'ab') as file:
+        with open(file_name, 'wb') as file:
             user = User(username, password, hunter_exam_date, category, name, birth_date )
             pickle.dump(user, file)
-
             file.close()
+    
+
+    def verify_register(self):
+        with open(self.file_name, 'rb') as file: 
+            while True:
+                try:
+                    user = pickle.load(file)
+                    self.list_users.append(user)
+
+                except EOFError:
+                    break
+        
+        for user in self.list_users:
+            if user.username == self.username:
+                self.username_in = True
+                return user
+        else:
+            return False
+                    
 
 if __name__ == "__main__":
     raiz = Tk()
