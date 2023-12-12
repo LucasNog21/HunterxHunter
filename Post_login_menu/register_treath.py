@@ -1,11 +1,12 @@
 from tkinter import *
 from tkinter import messagebox
-from treath import Treath
+from Subjects.treath import Treath
 import pickle
+
 class Treath_register:
     def __init__(self, mestre):
         self.mestre = mestre
-        self.file_name = "HunterxHunter\list_treaths.txt"
+        self.file_name_treaths = "Pickle_files\list_treaths.txt"
         self.list_treaths = []
         self.c1 = Frame(self.mestre)
         self.c1["padx"] = 100
@@ -66,33 +67,33 @@ class Treath_register:
         if self.verify_register() == False:
 
             try:
-                self.registrar(self.file_name, self.name, self.specie, self.level, self.nen)
+                self.registrar(self.file_name_treaths, self.specie, self.level)
                 messagebox.showinfo("Sucesso","ameaça registrada.")
             except FileNotFoundError:
-                messagebox.showinfo("Arquivo inexistente",f"O arquivo {self.file_name} não foi encontrado.")
+                messagebox.showinfo("Arquivo inexistente",f"O arquivo {self.file_name_treaths} não foi encontrado.")
 
 
-    def registrar(self, file_name, name, specie, level, nen):
+    def registrar(self, file_name, specie, level):
         with open(file_name, 'wb') as file:
-            treath = Treath(name, specie, level, nen)
+            treath = Treath(specie, level)
             pickle.dump(treath, file)
             file.close()
     
 
     def verify_register(self):
-        with open(self.file_name, 'rb') as file: 
+        with open(self.file_name_treaths, 'rb') as file: 
             while True:
                 try:
-                    user = pickle.load(file)
-                    self.list_treaths.append(user)
+                    treath = pickle.load(file)
+                    self.list_treaths.append(treath)
 
                 except EOFError:
                     break
         
         for treath in self.list_treaths:
-            if treath.name == treath.name:
+            if treath.specie == self.specie:
                 self.name_in = True
-                return user
+                return treath
         else:
             return False
         

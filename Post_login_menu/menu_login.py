@@ -1,14 +1,14 @@
 from tkinter import *
 from tkinter import messagebox
-from register_treath import Treath_register
+from Post_login_menu.register_treath import Treath_register
 
 import pickle
 
 class Menu_login:
     def __init__(self, mestre):
         self.mestre = mestre
-        self.file_name = "HunterxHunter\list_register.txt"
-        self.file_name_treaths = "HunterxHunter\list_treaths.txt"
+        self.file_name = "Pickle_files\list_register.txt"
+        self.file_name_treaths = "Pickle_files\list_treaths.txt"
         self.c1 = Frame(self.mestre)
         self.c1["padx"] = 100
         self.c1["pady"] = 10
@@ -74,16 +74,16 @@ class Menu_login:
             list_treaths = []
             while True:
                 try:
-                    user = pickle.load(file)
-                    list_treaths.append(user)
+                    treath = pickle.load(file)
+                    list_treaths.append(treath)
 
                 except EOFError:
                     break
                 
         exibition = ''
         for treath in list_treaths:
-            if treath and hasattr(user, 'name'):
-                exibition += treath.name + " nivel " + treath.level +'\n'
+            if treath and hasattr(treath, 'specie'):
+                exibition += treath.specie + " nivel " + treath.get_level() +'\n'
 
     
         self.top = Toplevel()

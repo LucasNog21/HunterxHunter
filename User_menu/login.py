@@ -1,12 +1,12 @@
 from tkinter import *
 from tkinter import messagebox
-from menu_login import Menu_login
+from Post_login_menu.menu_login import Menu_login
 import pickle
 
 class Login:
     def __init__(self, mestre):
         self.mestre = mestre
-        self.file_name = "HunterxHunter\list_register.txt"
+        self.file_name = "Pickle_files\list_register.txt"
         self.c1 = Frame(self.mestre)
         self.c1["padx"] = 100
         self.c1["pady"] = 10

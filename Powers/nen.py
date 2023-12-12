@@ -1,4 +1,4 @@
-from hatsu import *
+from Powers.hatsu import *
 
 class Nen(Hatsu):
 

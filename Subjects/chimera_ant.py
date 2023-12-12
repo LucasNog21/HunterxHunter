@@ -1,8 +1,10 @@
 from random import choice
 from human import Human
+from treath import Treath
 
-class ChimeraAnt(Human):
-    def __init__(self, name: str, first_animal: str, second_animal: str, birth_date: str) -> None:
+class ChimeraAnt(Human, Treath):
+    def __init__(self, name: str, first_animal: str, second_animal: str, birth_date: str, specie: str, level: str) -> None:
+        Treath.__init__(specie, level)
         self.name: str = name
         self.first_animal: str = first_animal
         self.second_animal: str = second_animal

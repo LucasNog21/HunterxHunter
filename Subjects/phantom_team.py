@@ -1,8 +1,11 @@
 from human import Human
+from treath import Treath
 
-class PhantomTeamMember(Human):
-    def __init__(self, register_date: str, name: str, birth_date: int) -> None:
-        super().__init__(name, birth_date),
+
+class PhantomTeamMember(Human, Treath):
+    def __init__(self, register_date: str, name: str, birth_date: int, specie: str, level: str) -> None:
+        Human.__init__(name, birth_date)
+        Treath.__init__(specie, level)
         self.register_date: str = register_date
         self.__number = 0
         self.__is_leader: bool = False

@@ -1,4 +1,4 @@
-from nen import Nen
+from Powers.nen import Nen
 
 class Human(Nen):
     def __init__(self, name: str, birth_date: str) -> None:

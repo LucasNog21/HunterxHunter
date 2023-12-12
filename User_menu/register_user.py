@@ -1,13 +1,13 @@
 from tkinter import *
 from tkinter import messagebox
-from user import User
+from Subjects.user import User
 import pickle
 
-class Registro:
+class Register:
     def __init__(self, mestre):
         self.mestre = mestre
         self.list_users = []
-        self.file_name = "HunterxHunter\list_register.txt"
+        self.file_name = "Pickle_files\list_register.txt"
         self.c1 = Frame(self.mestre)
         self.c1["padx"] = 100
         self.c1["pady"] = 10
@@ -102,16 +102,18 @@ class Registro:
 
                 except EOFError:
                     break
-        
-        for user in self.list_users:
-            if user.username == self.username:
-                self.username_in = True
-                return user
+
+        if self.list_users == []:
+            for user in self.list_users:
+                if user.username == self.username:
+                    self.username_in = True
+                    return user
+            else:
+                return False
         else:
             return False
-                    
 
 if __name__ == "__main__":
     raiz = Tk()
-    Registro(raiz)
+    Register(raiz)
     raiz.mainloop()

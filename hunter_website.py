@@ -1,6 +1,6 @@
 from tkinter import *
-from register_user import Registro
-from login import Login
+from User_menu.register_user import Register
+from User_menu.login import Login
 
 class Website:
     def __init__(self,mestre):
@@ -29,7 +29,7 @@ class Website:
 
     def abrir_registro(self):
         raiz_registro = Tk()
-        Registro(raiz_registro)
+        Register(raiz_registro)
         raiz_registro.mainloop()
 
     def abrir_login(self):
