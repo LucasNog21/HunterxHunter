@@ -77,6 +77,7 @@ class Register:
         self.name = self.l6.get()
         self.birth_date = self.l7.get()
 
+        self.update_register()
         if self.verify_register() == False:
 
             try:
@@ -87,23 +88,26 @@ class Register:
 
 
     def registrar(self, file_name, username, password, hunter_exam_date, category, name, birth_date):
+       
         with open(file_name, 'wb') as file:
-            user = User(username, password, hunter_exam_date, category, name, birth_date )
-            pickle.dump(user, file)
+            new_user = User(username, password, hunter_exam_date, category, name, birth_date )
+            self.list_users.append(new_user)
+            pickle.dump(self.list_users, file)
             file.close()
     
 
-    def verify_register(self):
-        with open(self.file_name, 'rb') as file: 
+    def update_register(self):
+         with open(self.file_name, 'rb') as file:
             while True:
                 try:
-                    user = pickle.load(file)
-                    self.list_users.append(user)
+                    self.list_users = pickle.load(file)
 
                 except EOFError:
                     break
 
-        if self.list_users == []:
+    def verify_register(self):
+
+        if not self.list_users == []:
             for user in self.list_users:
                 if user.username == self.username:
                     self.username_in = True

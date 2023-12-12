@@ -57,13 +57,10 @@ class Treath_register:
         self.specie = self.l3.get()
         self.level = self.l4.get()
         self.nen = self.l5.get()
-        self.name_in = False    
+        self.specie_in = False    
 
-        if self.nen.upper() == "S":
-            self.nen = True
-        else:
-            self.nen = False
-
+        self.update_register()
+        self.verify_register()
         if self.verify_register() == False:
 
             try:
@@ -76,24 +73,29 @@ class Treath_register:
     def registrar(self, file_name, specie, level):
         with open(file_name, 'wb') as file:
             treath = Treath(specie, level)
-            pickle.dump(treath, file)
+            self.list_treaths.append(treath)
+            pickle.dump(self.list_treaths, file)
             file.close()
     
 
-    def verify_register(self):
+    def update_register(self):
         with open(self.file_name_treaths, 'rb') as file: 
             while True:
                 try:
-                    treath = pickle.load(file)
-                    self.list_treaths.append(treath)
-
+                    self.list_treaths = pickle.load(file)
+    
                 except EOFError:
                     break
-        
-        for treath in self.list_treaths:
-            if treath.specie == self.specie:
-                self.name_in = True
-                return treath
+
+    def verify_register(self):
+
+        if not self.list_treaths == []:
+            for treath in self.list_treaths:
+                if treath.specie == self.specie:
+                    self.specie_in = True
+                    return treath
+            else:
+                return False
         else:
             return False
         

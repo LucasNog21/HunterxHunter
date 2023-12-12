@@ -9,6 +9,8 @@ class Menu_login:
         self.mestre = mestre
         self.file_name = "Pickle_files\list_register.txt"
         self.file_name_treaths = "Pickle_files\list_treaths.txt"
+        self.list_users = []
+        self.list_treaths = []
         self.c1 = Frame(self.mestre)
         self.c1["padx"] = 100
         self.c1["pady"] = 10
@@ -21,7 +23,7 @@ class Menu_login:
         self.c2 = Frame(self.mestre)
         self.c2.pack()
         self.botao = Button(self.c2, text = "Exibir registros")
-        self.botao["command"] = self.exibir_registros
+        self.botao["command"] = self.exibition_users
         self.botao.pack()
 
         self.c3 = Frame(self.mestre)
@@ -33,23 +35,21 @@ class Menu_login:
         self.c4 = Frame(self.mestre)
         self.c4.pack()
         self.botao = Button(self.c4, text = "Exibir ameaças")
-        self.botao["command"] = self.exibir_ameaças
+        self.botao["command"] = self.exibition_treaths
         self.botao.pack()
 
 
-    def exibir_registros(self):
+    def exibition_users(self):
         with open(self.file_name, 'rb') as file: 
-            list_users = []
             while True:
                 try:
-                    user = pickle.load(file)
-                    list_users.append(user)
+                    self.list_users = pickle.load(file)
 
                 except EOFError:
                     break
                 
         exibition = ''
-        for user in list_users:
+        for user in self.list_users:
             if user and hasattr(user, 'name'):
                 exibition += user.name + '\n'
 
@@ -69,19 +69,17 @@ class Menu_login:
         Treath_register(raiz_registro)
         raiz_registro.mainloop()
 
-    def exibir_ameaças(self):
+    def exibition_treaths(self):
         with open(self.file_name_treaths, 'rb') as file: 
-            list_treaths = []
             while True:
                 try:
-                    treath = pickle.load(file)
-                    list_treaths.append(treath)
+                    self.list_treaths = pickle.load(file)
 
                 except EOFError:
                     break
-                
+    
         exibition = ''
-        for treath in list_treaths:
+        for treath in self.list_treaths:
             if treath and hasattr(treath, 'specie'):
                 exibition += treath.specie + " nivel " + treath.get_level() +'\n'
 
