@@ -7,8 +7,8 @@ import pickle
 class Menu_login:
     def __init__(self, mestre):
         self.mestre = mestre
-        self.file_name = "Pickle_files\list_register.txt"
-        self.file_name_treaths = "Pickle_files\list_treaths.txt"
+        self.file_name = "HunterxHunter\Pickle_files\list_register.txt"
+        self.file_name_treaths = "HunterxHunter\Pickle_files\list_treaths.txt"
         self.list_users = []
         self.list_treaths = []
         self.c1 = Frame(self.mestre)
@@ -47,7 +47,7 @@ class Menu_login:
 
                 except EOFError:
                     break
-                
+
         exibition = ''
         for user in self.list_users:
             if user and hasattr(user, 'name'):
@@ -77,11 +77,11 @@ class Menu_login:
 
                 except EOFError:
                     break
-    
+                
         exibition = ''
         for treath in self.list_treaths:
             if treath and hasattr(treath, 'specie'):
-                exibition += treath.specie + " nivel " + treath.get_level() +'\n'
+                exibition += treath.specie + '\n'
 
     
         self.top = Toplevel()
@@ -93,6 +93,7 @@ class Menu_login:
         self.widget1.pack()
         self.msg = Label(self.widget1, text= exibition)
         self.msg.pack()
+
 
 
 if __name__ == "__main__":

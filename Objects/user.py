@@ -1,4 +1,4 @@
-from Subjects.hunter import Hunter
+from Objects.hunter import Hunter
 
 class User(Hunter):
     def __init__(self, username: str, password: str, hunter_exam_date: str, category:str, name: str, birth_date: int):

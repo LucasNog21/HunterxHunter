@@ -6,7 +6,7 @@ import pickle
 class Login:
     def __init__(self, mestre):
         self.mestre = mestre
-        self.file_name = "Pickle_files\list_register.txt"
+        self.file_name = "HunterxHunter\Pickle_files\list_register.txt"
         self.list_users = []
         self.c1 = Frame(self.mestre)
         self.c1["padx"] = 100
