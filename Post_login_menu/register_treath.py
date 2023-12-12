@@ -1,12 +1,12 @@
 from tkinter import *
 from tkinter import messagebox
-from Objects.treath import Treath
+from Subjects.treath import Treath
 import pickle
 
 class Treath_register:
     def __init__(self, mestre):
         self.mestre = mestre
-        self.file_name_treaths = "HunterxHunter\Pickle_files\list_treaths.txt"
+        self.file_name_treaths = "Pickle_files\list_treaths.txt"
         self.list_treaths = []
         self.c1 = Frame(self.mestre)
         self.c1["padx"] = 100

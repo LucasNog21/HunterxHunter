@@ -1,4 +1,4 @@
-from Objects.human import Human
+from Subjects.human import Human
 
 class Hunter(Human):
     def __init__(self, hunter_exam_date: str, category:str, name: str, birth_date: int) -> None:

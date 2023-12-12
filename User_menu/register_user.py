@@ -1,13 +1,13 @@
 from tkinter import *
 from tkinter import messagebox
-from Objects.user import User
+from Subjects.user import User
 import pickle
 
 class Register:
     def __init__(self, mestre):
         self.mestre = mestre
         self.list_users = []
-        self.file_name = "HunterxHunter\Pickle_files\list_register.txt"
+        self.file_name = "Pickle_files\list_register.txt"
         self.c1 = Frame(self.mestre)
         self.c1["padx"] = 100
         self.c1["pady"] = 10
