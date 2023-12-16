@@ -4,8 +4,10 @@ from Subjects.user import User
 import pickle
 
 class Register:
-    def __init__(self, mestre):
+    def __init__(self, mestre, change, user_name):
         self.mestre = mestre
+        self.change = change
+        self.user_name = user_name
         self.list_users = []
         self.file_name = "Pickle_files\list_register.txt"
         self.c1 = Frame(self.mestre)
@@ -78,25 +80,34 @@ class Register:
         self.birth_date = self.l7.get()
 
         self.update_register()
+
+        if self.change:
+            print("Chegou aqui")  
+            self.delete_register()
+
+    
         if self.verify_register() == False:
 
             try:
-                self.registrar(self.file_name, self.username, self.password, self.hunter_exam_date, self.category, self.name, self.birth_date)
+                self.registrar(self.username, self.password, self.hunter_exam_date, self.category, self.name, self.birth_date)
                 messagebox.showinfo("Sucesso","Registro autenticado.")
             except FileNotFoundError:
                 messagebox.showinfo("Arquivo inexistente",f"O arquivo {self.file_name} não foi encontrado.")
 
+        else:
+            messagebox.showinfo("Erro de autenticação", "nome de usuário já presente no arquivo")
 
-    def registrar(self, file_name, username, password, hunter_exam_date, category, name, birth_date):
+
+    def registrar(self, username, password, hunter_exam_date, category, name, birth_date):
        
-        with open(file_name, 'wb') as file:
+        with open(self.file_name, 'wb') as file:
             new_user = User(username, password, hunter_exam_date, category, name, birth_date )
             self.list_users.append(new_user)
             pickle.dump(self.list_users, file)
             file.close()
-    
 
     def update_register(self):
+         self.list_users = []
          with open(self.file_name, 'rb') as file:
             while True:
                 try:
@@ -116,6 +127,17 @@ class Register:
                 return False
         else:
             return False
+    
+    def delete_register(self):
+        with open(self.file_name, 'rb') as file:
+            self.list_users = pickle.load(file)
+
+        self.list_users = [user for user in self.list_users if user.username != self.user_name]
+
+        with open(self.file_name, 'wb') as file:
+            pickle.dump(self.list_users, file)
+
+
 
 if __name__ == "__main__":
     raiz = Tk()

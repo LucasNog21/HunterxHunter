@@ -1,12 +1,13 @@
 from tkinter import *
 from tkinter import messagebox
 from Post_login_menu.register_treath import Treath_register
-
+from User_menu.register_user import Register
 import pickle
 
 class Menu_login:
-    def __init__(self, mestre):
+    def __init__(self, mestre, user_name):
         self.mestre = mestre
+        self.user_name = user_name
         self.file_name = "Pickle_files\list_register.txt"
         self.file_name_treaths = "Pickle_files\list_treaths.txt"
         self.list_users = []
@@ -38,6 +39,12 @@ class Menu_login:
         self.botao["command"] = self.exibition_treaths
         self.botao.pack()
 
+        self.c5 = Frame(self.mestre)
+        self.c5.pack()
+        self.botao = Button(self.c5, text = "Mudar registro")
+        self.botao["command"] = self.change_register
+        self.botao.pack()
+
 
     def exibition_users(self):
         with open(self.file_name, 'rb') as file: 
@@ -50,8 +57,8 @@ class Menu_login:
 
         exibition = ''
         for user in self.list_users:
-            if user and hasattr(user, 'name'):
-                exibition += user.name + '\n'
+            if user and hasattr(user, 'username'):
+                exibition += user.username + '\n'
 
     
         self.top = Toplevel()
@@ -93,6 +100,11 @@ class Menu_login:
         self.widget1.pack()
         self.msg = Label(self.widget1, text= exibition)
         self.msg.pack()
+    
+    def change_register(self):
+        raiz_registro = Tk()
+        Register(raiz_registro, True, self.user_name)
+        raiz_registro.mainloop()
 
 
 

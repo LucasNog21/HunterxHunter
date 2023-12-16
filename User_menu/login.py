@@ -51,7 +51,7 @@ class Login:
             messagebox.showinfo("Sucesso","Seu login foi um sucesso")
             self.mestre.destroy()
             raiz_menu_login = Tk()
-            Menu_login(raiz_menu_login)
+            Menu_login(raiz_menu_login, self.username)
             raiz_menu_login.mainloop()
         else:
             messagebox.showinfo("Falha no login","Usuário e/ou senha não presente(s) no arquivo. Tente novamente")

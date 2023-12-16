@@ -8,6 +8,10 @@ class User(Hunter):
     
     def get_password(self):
         return self.__password
+    
+    def set_password(self, new_password):
+        self.__password = new_password
+
 
     
     
