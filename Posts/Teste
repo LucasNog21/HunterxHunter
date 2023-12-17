@@ -1,0 +1,22 @@
+from tkinter import Tk, Label, PhotoImage
+
+class App:
+    def __init__(self, master):
+        self.master = master
+        master.title("Exemplo de Imagem")
+
+        # Carregando a imagem
+        self.imagem = PhotoImage(file="Images\IMG_20221224_234029_938.jpg")
+
+        # Adicionando a imagem a um rótulo
+        self.label_imagem = Label(master, image=self.imagem)
+        self.label_imagem.grid(row=0, column=0)
+
+        # Adicionando informações ao lado da imagem
+        self.label_info = Label(master, text="Algumas informações aqui")
+        self.label_info.grid(row=0, column=1)
+
+if __name__ == "__main__":
+    root = Tk()
+    app = App(root)
+    root.mainloop()
