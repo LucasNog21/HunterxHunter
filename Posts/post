@@ -1,0 +1,35 @@
+from tkinter import *
+from tkinter import ImageTk
+
+class Post:
+    def __init__(self, master , title, category, file_image, description, name ):
+        self.master = master
+        self.title = title
+        self.category = category
+        self.file_image = file_image
+        self.description = description
+        self.name = name
+        
+        self.ttl = Frame(self.master)
+        self.ttl.pack()
+        self.labelttl = Label(self.ttl, text = self.title)
+        self.labelttl.pack(side = TOP)
+
+        self.cty = Frame(self.master)
+        self.cty.pack()
+        self.labelcty = Label(self.cty, text = self.category)
+        self.labelcty.pack(side = LEFT)
+
+    def open_image(self):
+        self.imagem_pil = Image.open("Images\IMG_20221224_234029_938.jpg")
+        self.imagem_tk = ImageTk.PhotoImage(self.imagem_pil)
+
+        # Adicionando a imagem a um rótulo
+        self.label = Label(self.master, image=self.imagem_tk)
+        self.label.pack()
+
+
+if __name__ == "__main__":
+    root = Tk()
+    app = Post(root)
+    root.mainloop()

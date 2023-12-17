@@ -8,8 +8,8 @@ class Menu_login:
     def __init__(self, mestre, user_name):
         self.mestre = mestre
         self.user_name = user_name
-        self.file_name = "Pickle_files\list_register.txt"
-        self.file_name_treaths = "Pickle_files\list_treaths.txt"
+        self.file_name = "HunterxHunter\Pickle_files\list_register.txt"
+        self.file_name_treaths = "HunterxHunter\Pickle_files\list_treaths.txt"
         self.list_users = []
         self.list_treaths = []
         self.c1 = Frame(self.mestre)
