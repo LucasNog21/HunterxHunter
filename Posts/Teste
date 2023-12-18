@@ -1,0 +1,42 @@
+import tkinter as tk
+from tkinter import scrolledtext  # Para a caixa de texto
+from PIL import Image, ImageTk
+
+def adicionar_texto():
+    texto = texto_entry.get("1.0", tk.END)
+    texto_box.config(state=tk.NORMAL)
+    texto_box.insert(tk.END, texto)
+    texto_box.config(state=tk.DISABLED)
+
+def adicionar_imagem():
+    caminho_imagem = "Images\Sequel Nikah Muda #humor #Humor #amreading #books #wattpad.jpg"  # Substitua pelo caminho real da sua imagem
+    imagem = Image.open(caminho_imagem)
+    imagem = imagem.resize((200, 200), "antialias")  # Ajusta o tamanho da imagem conforme necessário
+    imagem_tk = ImageTk.PhotoImage(imagem)
+
+    imagem_label.config(image=imagem_tk)
+    imagem_label.image = imagem_tk  # Manter uma referência para evitar coleta de lixo
+
+# Criar a janela
+root = tk.Tk()
+root.title("Texto e Imagem")
+
+# Criar a caixa de texto
+texto_box = scrolledtext.ScrolledText(root, wrap=tk.WORD, width=30, height=10, state=tk.DISABLED)
+texto_box.pack(pady=10)
+
+# Adicionar botão para adicionar texto à caixa de texto
+texto_entry = tk.Text(root, wrap=tk.WORD, width=30, height=4)
+texto_entry.pack()
+btn_texto = tk.Button(root, text="Adicionar Texto", command=adicionar_texto)
+btn_texto.pack(pady=5)
+
+# Adicionar botão para adicionar imagem
+btn_imagem = tk.Button(root, text="Adicionar Imagem", command=adicionar_imagem)
+btn_imagem.pack(pady=5)
+
+# Criar a área para a imagem
+imagem_label = tk.Label(root)
+imagem_label.pack()
+
+root.mainloop()

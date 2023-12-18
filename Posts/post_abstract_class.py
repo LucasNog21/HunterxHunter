@@ -71,12 +71,12 @@ class Post_register:
 
     def open_post(self):
         raiz = Tk()
-        post = Post(raiz, self.title, self.category, self.file_image, self.description, self.name)
+        posts = Post(raiz, self.title, self.category, self.file_image, self.description, self.name)
         raiz.mainloop()
 
 if __name__ == "__main__":
     raiz = Tk()
-    post = Post_register(raiz)
+    posts = Post_register(raiz)
     raiz.mainloop()
 
 
