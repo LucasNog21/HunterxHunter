@@ -1,8 +1,9 @@
 from tkinter import *
+from tkinter import filedialog
+from tkinter import PhotoImage
 from PIL import Image, ImageTk
 from Posts.post import Post
 import webbrowser
-from tkinter import filedialog
 import os 
 
 class Post_register:
@@ -68,14 +69,16 @@ class Post_register:
     def import_image(self):
         file_path = filedialog.askopenfilename()
 
-        hunter = file_path.find("HunterxHunter")
+        hunter = file_path.find("Images")
 
         if hunter != -1:
             relative_path = file_path[hunter:]
+            relative_path = os.path.normpath(relative_path)
+            print(relative_path)
+            self.image_object = PhotoImage(relative_path)
 
-        self.file_image = relative_path
 
-
+    
     def open_link(self):
         link = "https://www.befunky.com/pt/criar/editor-de-fotos/"
         webbrowser.open(link)
@@ -92,7 +95,7 @@ class Post_register:
 
     def open_post(self):
         raiz = Tk()
-        posts = Post(raiz, self.title, self.category, self.file_image, self.description, self.name)
+        posts = Post(raiz, self.title, self.category, self.image_object, self.description, self.name)
         raiz.mainloop()
 
 if __name__ == "__main__":
