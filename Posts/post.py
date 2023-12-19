@@ -43,5 +43,5 @@ class Post:
     
 if __name__ == "__main__":
     root = Tk()
-    app = Post(root, "Teste", "Ameaça", "Images\image500x600.jpg", "Muito bacana", "Lucas")
+    app = Post(root, "Teste", "Ameaça", "Images\Sequel Nikah Muda #humor #Humor #amreading #books #wattpad.jpg", "Muito bacana", "Lucas")
     root.mainloop()

@@ -10,6 +10,7 @@ class Post_register:
     def __init__(self, master):
         self.master = master
         self.master.title("Post")
+        self.image_object = None
 
         self.window = Frame(self.master)
         self.window["padx"] = 100
@@ -73,7 +74,7 @@ class Post_register:
             relative_path = file_path[hunter:]
             relative_path = os.path.normpath(relative_path)
             print(relative_path)
-            self.image_object = PhotoImage(relative_path)
+            self.image_object = PhotoImage(file=r"{}".format(relative_path))
 
 
     
