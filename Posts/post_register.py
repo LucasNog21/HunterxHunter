@@ -1,14 +1,10 @@
 from tkinter import *
-from tkinter import filedialog
-from Posts.post import Post
 import webbrowser
 
 class Post_register:
     def __init__(self, master):
         self.master = master
         self.master.title("Post")
-        self.file_types = [("Arquivos de Imagem", "*.png;*.jpg;*.jpeg;*.gif")]
-        self.image_object = None
 
         self.window = Frame(self.master)
         self.window["padx"] = 100
@@ -67,15 +63,7 @@ class Post_register:
         self.button_size.pack()
         
 
-        self.button_import = Button(self.button_frame, text = "Importar imagem")
-        self.button_import ["command"] = self.import_image
-        self.button_import .pack()
     
-    def import_image(self):
-        self.file_path = filedialog.askopenfilename(filetypes = self.file_types)
-        self.image_entry.delete(0, "end")
-        self.image_entry.insert(0,self.file_path)
-
     def open_link(self):
         link = "https://www.befunky.com/pt/criar/editor-de-fotos/"
         webbrowser.open(link)
