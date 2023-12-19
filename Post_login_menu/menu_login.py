@@ -10,8 +10,8 @@ class Menu_login:
     def __init__(self, master, user_name):
         self.master = master
         self.user_name = user_name
-        self.file_name = "HunterxHunter/Pickle_files/list_register.txt"
-        self.file_name_treaths = "HunterxHunter/Pickle_files/list_treaths.txt"
+        self.file_name = "Pickle_files\list_register.txt"
+        self.file_name_treaths = "Pickle_files\list_treaths.txt"
         self.list_users = []
         self.list_treaths = []
         self.window = Frame(self.master)
@@ -105,8 +105,8 @@ class Menu_login:
                 
         exibition = ''
         for treath in self.list_treaths:
-            if treath and hasattr(treath, 'specie'):
-                exibition += treath.specie + '\n'
+            if treath and hasattr(treath, 'name'):
+                exibition += treath.name + " nível: "+ treath.get_level() + '\n'
 
     
         self.top = Toplevel()

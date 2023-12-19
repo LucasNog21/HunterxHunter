@@ -1,5 +1,6 @@
 class Treath:
-    def __init__(self, specie, level):
+    def __init__(self, name, specie, level):
+        self.name = name
         self.specie = specie
         self.__level = level
     

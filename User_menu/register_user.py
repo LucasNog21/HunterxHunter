@@ -11,7 +11,7 @@ class Register:
         self.user_name = user_name
         self.delete = delete
         self.list_users = []
-        self.file_name = "HunterxHunter/Pickle_files/list_register.txt"
+        self.file_name = "Pickle_files\list_register.txt"
 
         if self.delete:
             self.verify_delete()
@@ -94,18 +94,10 @@ class Register:
         if self.change:
             self.delete_register()
 
-
-    def verify_delete(self):
-        if self.delete:
-            self.master.destroy()
-            self.delete_register()
-            messagebox.showinfo("Uma pena","Conta deletada.")
-
-
         if self.verify_register() == False:
 
             try:
-                self.register(self.username, self.password, self.hunter_exam_date, self.category, self.name, self.birth_date)
+                self.register()
                 messagebox.showinfo("Sucesso","Registro autenticado.")
             except FileNotFoundError:
                 messagebox.showinfo("Arquivo inexistente",f"O arquivo {self.file_name} não foi encontrado.")
@@ -114,10 +106,16 @@ class Register:
             messagebox.showinfo("Erro de autenticação", "nome de usuário já presente no arquivo")
 
 
-    def register(self, username, password, hunter_exam_date, category, name, birth_date):
+    def verify_delete(self):
+        self.master.destroy()
+        self.delete_register()
+        messagebox.showinfo("Uma pena","Conta deletada.")
+
+
+    def register(self):
     
         with open(self.file_name, 'wb') as file:
-            new_user = User(username, password, hunter_exam_date, category, name, birth_date )
+            new_user = User(self.username, self.password, self.hunter_exam_date, self.category, self.name, self.birth_date)
             self.list_users.append(new_user)
             pickle.dump(self.list_users, file)
             file.close()

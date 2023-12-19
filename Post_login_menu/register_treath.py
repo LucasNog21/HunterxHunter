@@ -6,7 +6,7 @@ import pickle
 class Treath_register:
     def __init__(self, master):
         self.master = master
-        self.file_name_treaths = "HunterxHunter/Pickle_files/list_treaths.txt"
+        self.file_name_treaths = "Pickle_files\list_treaths.txt"
         self.list_treaths = []
         self.window = Frame(self.master)
         self.window["padx"] = 100
@@ -38,14 +38,6 @@ class Treath_register:
         self.level_entry = Entry(self.level_frame)
         self.level_entry.pack(side = LEFT)
 
-        self.nen_frame = Frame(self.master)
-        self.nen_frame.pack()
-        self.nen_label = Label(self.nen_frame, text = "Ameaça utiliza nen: S/N")
-        self.nen_label.pack(side = LEFT)
-        self.nen_entry = Entry(self.nen_frame)
-        self.nen_entry.pack(side = LEFT)
-
-
         self.button_frame = Frame(self.master)
         self.button_frame.pack()
         self.button_register = Button(self.button_frame, text = "Registrar")
@@ -56,24 +48,22 @@ class Treath_register:
         self.name = self.name_entry.get()
         self.specie = self.specie_entry.get()
         self.level = self.level_entry.get()
-        self.nen = self.nen_entry.get()
-        self.specie_in = False    
+        self.name_in = False    
 
         self.update_register()
-        self.verify_register()
 
         if self.verify_register() == False:
 
             try:
-                self.registrar(self.file_name_treaths, self.specie, self.level)
+                self.register()
                 messagebox.showinfo("Sucesso","ameaça registrada.")
             except FileNotFoundError:
                 messagebox.showinfo("Arquivo inexistente",f"O arquivo {self.file_name_treaths} não foi encontrado.")
 
 
-    def registrar(self, file_name, specie, level):
-        with open(file_name, 'wb') as file:
-            treath = Treath(specie, level)
+    def register(self):
+        with open(self.file_name_treaths, 'wb') as file:
+            treath = Treath(self.name, self.specie, self.level)
             self.list_treaths.append(treath)
             pickle.dump(self.list_treaths, file)
             file.close()
@@ -92,8 +82,8 @@ class Treath_register:
 
         if not self.list_treaths == []:
             for treath in self.list_treaths:
-                if treath.specie == self.specie:
-                    self.specie_in = True
+                if treath.name == self.name:
+                    self.name_in = True
                     return treath
             else:
                 return False
