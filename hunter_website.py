@@ -29,14 +29,14 @@ class Website:
 
 
     def open_register(self):
-        register_root = Tk()
-        Register(register_root, False, None, False)
-        register_root.mainloop()
+        self.master = Tk()
+        Register(self.master, False, None, False)
+        self.master.mainloop()
 
     def open_login(self):
-        login_root = Tk()
-        Login(login_root)
-        login_root.mainloop()
+        self.master = Tk()
+        Login(self.master)
+        self.master.mainloop()
 
 if __name__ == "__main__":
     root = Tk()

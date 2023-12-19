@@ -57,6 +57,7 @@ class Treath_register:
             try:
                 self.register()
                 messagebox.showinfo("Sucesso","ameaça registrada.")
+                self.master.destroy()
             except FileNotFoundError:
                 messagebox.showinfo("Arquivo inexistente",f"O arquivo {self.file_name_treaths} não foi encontrado.")
 

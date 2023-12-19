@@ -6,7 +6,15 @@ class User_page:
     def __init__(self, master, user_name):
         self.master = master
         self.user_name = user_name
+        self.master.title("Página de usuário")
+        self.window = Frame(self.master, background = "#D8EEEB")
+        self.window["padx"] = 100
+        self.window["pady"] = 10
+        self.window.pack()
 
+        self.title = Label(self.window, text = "Usuário\n ", background = "#D8EEEB")
+        self.title["font"] = ("Arial", "10", "bold")
+        self.title.pack()
 
         self.button_frame_1 = Frame(self.master)
         self.button_frame_1.pack()

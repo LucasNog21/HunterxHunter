@@ -99,6 +99,7 @@ class Register:
             try:
                 self.register()
                 messagebox.showinfo("Sucesso","Registro autenticado.")
+                self.master.destroy()
             except FileNotFoundError:
                 messagebox.showinfo("Arquivo inexistente",f"O arquivo {self.file_name} não foi encontrado.")
 
@@ -150,6 +151,7 @@ class Register:
 
         with open(self.file_name, 'wb') as file:
             pickle.dump(self.list_users, file)
+        self.master.destroy()
 
 
 
