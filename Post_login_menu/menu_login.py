@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from Post_login_menu.register_treath import Treath_register
 from User_menu.register_user import Register
+from Posts.post_register import Post_register
 import pickle
 
 class Menu_login:
@@ -44,6 +45,17 @@ class Menu_login:
         self.botao = Button(self.c5, text = "Mudar registro")
         self.botao["command"] = self.change_register
         self.botao.pack()
+
+        self.c6 = Frame(self.mestre)
+        self.c6.pack()
+        self.botao = Button(self.c6, text = "Post")
+        self.botao["command"] = self.open_post_register
+        self.botao.pack()
+
+    def open_post_register(self):
+        raiz_registro = Tk()
+        Post_register(raiz_registro)
+        raiz_registro.mainloop()
 
 
     def exibition_users(self):
