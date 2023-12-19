@@ -1,16 +1,17 @@
 from tkinter import *
 from tkinter import messagebox
 from Post_login_menu.register_treath import Treath_register
-from User_menu.register_user import Register
 from Posts.post_register import Post_register
+from Post_login_menu.user_page import User_page
+
 import pickle
 
 class Menu_login:
     def __init__(self, master, user_name):
         self.master = master
         self.user_name = user_name
-        self.file_name = "Pickle_files\list_register.txt"
-        self.file_name_treaths = "Pickle_files\list_treaths.txt"
+        self.file_name = "HunterxHunter/Pickle_files/list_register.txt"
+        self.file_name_treaths = "HunterxHunter/Pickle_files/list_treaths.txt"
         self.list_users = []
         self.list_treaths = []
         self.window = Frame(self.master)
@@ -39,20 +40,28 @@ class Menu_login:
         self.button_exibition_treaths["command"] = self.exibition_treaths
         self.button_exibition_treaths.pack(side = "left")
 
-        self.button_change_register = Button(self.button_frame_2, text = "Mudar registro")
-        self.button_change_register["command"] = self.change_register
-        self.button_change_register.pack(side ="right")
+
+        self.button_post_register = Button(self.button_frame_2, text = "Página de usuário")
+        self.button_post_register["command"] = self.open_user_page
+        self.button_post_register.pack()
+
 
         self.button_frame_3 = Frame(self.master)
         self.button_frame_3.pack()
-        self.button_post_register = Button(self.button_frame_3, text = "Post")
-        self.button_post_register["command"] = self.open_post_register
-        self.button_post_register.pack()
+        self.button_user_page = Button(self.button_frame_3, text = "Post")
+        self.button_user_page["command"] = self.open_post_register
+        self.button_user_page.pack()
+
 
     def open_post_register(self):
         register_root = Tk()
         Post_register(register_root)
         register_root.mainloop()
+    
+    def open_user_page(self):
+        user_root = Tk()
+        User_page(user_root, self.user_name)
+        user_root.mainloop()
 
 
     def exibition_users(self):
@@ -110,10 +119,6 @@ class Menu_login:
         self.msg = Label(self.widget1, text= exibition)
         self.msg.pack()
     
-    def change_register(self):
-        register_root = Tk()
-        Register(register_root, True, self.user_name)
-        register_root.mainloop()
 
 
 

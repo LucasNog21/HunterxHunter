@@ -6,7 +6,7 @@ import pickle
 class Treath_register:
     def __init__(self, master):
         self.master = master
-        self.file_name_treaths = "Pickle_files\list_treaths.txt"
+        self.file_name_treaths = "HunterxHunter/Pickle_files/list_treaths.txt"
         self.list_treaths = []
         self.window = Frame(self.master)
         self.window["padx"] = 100

@@ -30,7 +30,7 @@ class Website:
 
     def open_register(self):
         register_root = Tk()
-        Register(register_root, False, None)
+        Register(register_root, False, None, False)
         register_root.mainloop()
 
     def open_login(self):
