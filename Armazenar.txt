@@ -44,3 +44,14 @@ class Post:
         self.img.image = self.imagem_tk
         self.img.place(relx=0.5,rely =0.45, anchor = "c")
 
+
+    def import_image(self):
+        file_path = filedialog.askopenfilename()
+
+        hunter = file_path.find("HunterxHunter")
+
+        if hunter != -1:
+            relative_path = file_path[hunter:]
+            relative_path = os.path.normpath(relative_path)
+            print(relative_path)
+            self.image_object = PhotoImage(file=r"{}".format(relative_path))

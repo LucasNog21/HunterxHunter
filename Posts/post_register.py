@@ -1,15 +1,13 @@
 from tkinter import *
 from tkinter import filedialog
-from tkinter import PhotoImage
-from PIL import Image, ImageTk
 from Posts.post import Post
 import webbrowser
-import os 
 
 class Post_register:
     def __init__(self, master):
         self.master = master
         self.master.title("Post")
+        self.file_types = [("Arquivos de Imagem", "*.png;*.jpg;*.jpeg;*.gif")]
         self.image_object = None
 
         self.window = Frame(self.master)
@@ -49,35 +47,35 @@ class Post_register:
         self.name_entry = Entry(self.name_frame)
         self.name_entry.pack(side = LEFT)
 
-        self.c4 = Frame(self.master)
-        self.c4.pack()
-        self.botao = Button(self.c4, text = "Postar")
-        self.botao["command"] = self.posting
-        self.botao.pack()
+        self.image_frame = Frame(self.master)
+        self.image_frame.pack()
+        self.image_label = Label(self.image_frame, text = "file_image")
+        self.image_label.pack(side = LEFT)
+        self.image_entry = Entry(self.image_frame)
+        self.image_entry.pack(side = LEFT)
+
+        self.button_post_frame = Frame(self.master)
+        self.button_post_frame.pack()
+        self.button_post = Button(self.button_post_frame, text = "Postar")
+        self.button_post["command"] = self.posting
+        self.button_post.pack()
 
         self.button_frame = Frame(self.master)
         self.button_frame.pack()
         self.button_size = Button(self.button_frame, text = "redefinir imagem")
         self.button_size["command"] = self.open_link
         self.button_size.pack()
+        
 
         self.button_import = Button(self.button_frame, text = "Importar imagem")
         self.button_import ["command"] = self.import_image
         self.button_import .pack()
     
     def import_image(self):
-        file_path = filedialog.askopenfilename()
+        self.file_path = filedialog.askopenfilename(filetypes = self.file_types)
+        self.image_entry.delete(0, "end")
+        self.image_entry.insert(0,self.file_path)
 
-        hunter = file_path.find("Images")
-
-        if hunter != -1:
-            relative_path = file_path[hunter:]
-            relative_path = os.path.normpath(relative_path)
-            print(relative_path)
-            self.image_object = PhotoImage(file=r"{}".format(relative_path))
-
-
-    
     def open_link(self):
         link = "https://www.befunky.com/pt/criar/editor-de-fotos/"
         webbrowser.open(link)
@@ -88,13 +86,14 @@ class Post_register:
         self.category = self.category_entry.get()
         self.description = self.description_entry.get()
         self.name = self.name_entry.get()
+        self.file_image = self.image_entry.get()
 
         self.open_post()
 
 
     def open_post(self):
         root = Tk()
-        posts = Post(root, self.title, self.category, self.image_object, self.description, self.name)
+        posts = Post(root, self.title, self.category, self.file_image, self.description, self.name)
         root.mainloop()
 
 if __name__ == "__main__":

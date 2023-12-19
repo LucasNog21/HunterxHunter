@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter.ttk import *
+import os
 from PIL import ImageTk, Image
 
 class Post:
@@ -9,6 +10,7 @@ class Post:
         self.title = title
         self.category = category
         self.file_image = file_image
+        #self.file_image = self.relative_path()
         self.description = description
         self.name = name
 
@@ -24,18 +26,32 @@ class Post:
         self.nm = Label(self.top_frame, text="Autor: "+self.name, font=("Helvetica", 15))
         self.nm.pack(side = "right", padx = 100, anchor="e")
 
-
-        self.img = Label(self.master, image=self.file_image)
+        self.imagem_pil = Image.open(self.file_image)
+        self.imagem_tk = ImageTk.PhotoImage(self.imagem_pil)
+        self.img = Label(self.master, image=self.imagem_tk)
         self.img.image = self.imagem_tk
         self.img.pack()
+
 
         self.dsc = Label(self.master, text=self.description, wraplength=400, justify="center", font=("Helvetica", 12))
         self.dsc.pack()
 
         self.update_window_size()
 
+
+    def relative_path(self):
+
+        hunter = self.file_image.find("HunterxHunter")
+        if hunter != -1:
+            relative_path = self.file_image[hunter:]
+            relative_path = os.path.normpath(relative_path)
+            print(relative_path)
+            return relative_path
+            
+
+
     def update_window_size(self):
-        width = self.imagem_pil.width
+        width = 500
 
         height = 1000
 
@@ -43,5 +59,5 @@ class Post:
     
 if __name__ == "__main__":
     root = Tk()
-    app = Post(root, "Teste", "Ameaça", "Images\Sequel Nikah Muda #humor #Humor #amreading #books #wattpad.jpg", "Muito bacana", "Lucas")
+    app = Post(root, "Teste", "Ameaça", "Images/image500x600.jpg", "Muito bacana", "Lucas")
     root.mainloop()
