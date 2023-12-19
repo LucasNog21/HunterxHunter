@@ -6,56 +6,53 @@ from Posts.post_register import Post_register
 import pickle
 
 class Menu_login:
-    def __init__(self, mestre, user_name):
-        self.mestre = mestre
+    def __init__(self, master, user_name):
+        self.master = master
         self.user_name = user_name
         self.file_name = "Pickle_files\list_register.txt"
         self.file_name_treaths = "Pickle_files\list_treaths.txt"
         self.list_users = []
         self.list_treaths = []
-        self.c1 = Frame(self.mestre)
-        self.c1["padx"] = 100
-        self.c1["pady"] = 10
-        self.c1.pack()
+        self.window = Frame(self.master)
+        self.window["padx"] = 100
+        self.window["pady"] = 10
+        self.window.pack()
 
-        self.titulo = Label(self.c1, text = "Menu de autenticados")
-        self.titulo["font"] = ("Arial", "10", "bold")
-        self.titulo.pack()
+        self.title = Label(self.window, text = "Menu de autenticados")
+        self.title["font"] = ("Arial", "10", "bold")
+        self.title.pack()
 
-        self.c2 = Frame(self.mestre)
-        self.c2.pack()
-        self.botao = Button(self.c2, text = "Exibir registros")
-        self.botao["command"] = self.exibition_users
-        self.botao.pack()
+        self.button_frame_1 = Frame(self.master)
+        self.button_frame_1.pack()
 
-        self.c3 = Frame(self.mestre)
-        self.c3.pack()
-        self.botao = Button(self.c3, text = "Registrar ameaças")
-        self.botao["command"] = self.abrir_registro_ameaça
-        self.botao.pack()
+        self.button_exibition = Button(self.button_frame_1, text = "Exibir registros")
+        self.button_exibition["command"] = self.exibition_users
+        self.button_exibition.pack(side = "left")
 
-        self.c4 = Frame(self.mestre)
-        self.c4.pack()
-        self.botao = Button(self.c4, text = "Exibir ameaças")
-        self.botao["command"] = self.exibition_treaths
-        self.botao.pack()
+        self.button_open_users = Button(self.button_frame_1, text = "Registrar ameaças")
+        self.button_open_users["command"] = self.open_treath_register
+        self.button_open_users.pack(side = "right")
 
-        self.c5 = Frame(self.mestre)
-        self.c5.pack()
-        self.botao = Button(self.c5, text = "Mudar registro")
-        self.botao["command"] = self.change_register
-        self.botao.pack()
+        self.button_frame_2 = Frame(self.master)
+        self.button_frame_2.pack()
+        self.button_exibition_treaths = Button(self.button_frame_2, text = "Exibir ameaças")
+        self.button_exibition_treaths["command"] = self.exibition_treaths
+        self.button_exibition_treaths.pack(side = "left")
 
-        self.c6 = Frame(self.mestre)
-        self.c6.pack()
-        self.botao = Button(self.c6, text = "Post")
-        self.botao["command"] = self.open_post_register
-        self.botao.pack()
+        self.button_change_register = Button(self.c5, text = "Mudar registro")
+        self.button_change_register["command"] = self.change_register
+        self.button_change_register.pack(side ="right")
+
+        self.button_frame_3 = Frame(self.mestre)
+        self.button_frame_3.pack()
+        self.button_post_register = Button(self.button_frame_3, text = "Post")
+        self.button_post_register["command"] = self.open_post_register
+        self.button_post_register.pack()
 
     def open_post_register(self):
-        raiz_registro = Tk()
-        Post_register(raiz_registro)
-        raiz_registro.mainloop()
+        register_root = Tk()
+        Post_register(register_root)
+        register_root.mainloop()
 
 
     def exibition_users(self):
@@ -83,10 +80,10 @@ class Menu_login:
         self.msg = Label(self.widget1, text= exibition)
         self.msg.pack()
 
-    def abrir_registro_ameaça(self):
-        raiz_registro = Tk()
-        Treath_register(raiz_registro)
-        raiz_registro.mainloop()
+    def open_treath_register(self):
+        register_root = Tk()
+        Treath_register(register_root)
+        register_root.mainloop()
 
     def exibition_treaths(self):
         with open(self.file_name_treaths, 'rb') as file: 
@@ -114,13 +111,13 @@ class Menu_login:
         self.msg.pack()
     
     def change_register(self):
-        raiz_registro = Tk()
-        Register(raiz_registro, True, self.user_name)
-        raiz_registro.mainloop()
+        register_root = Tk()
+        Register(register_root, True, self.user_name)
+        register_root.mainloop()
 
 
 
 if __name__ == "__main__":
-    raiz = Tk()
-    Menu_login(raiz)
-    raiz.mainloop()
+    root = Tk()
+    Menu_login(root)
+    root.mainloop()
