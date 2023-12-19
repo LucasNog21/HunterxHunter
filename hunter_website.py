@@ -3,41 +3,42 @@ from User_menu.register_user import Register
 from User_menu.login import Login
 
 class Website:
-    def __init__(self,mestre):
-        self.mestre = mestre
-        self.c1 = Frame(self.mestre)
-        self.c1["padx"] = 100
-        self.c1["pady"] = 10
-        self.c1.pack()
+    def __init__(self,master):
+        self.master = master
+        self.master.title("HunterxHunter")
+        self.window = Frame(self.master, background = "#D8EEEB")
+        self.window["padx"] = 100
+        self.window["pady"] = 10
+        self.window.pack()
 
-        self.titulo = Label(self.c1, text = "Bem vindo ao Hunter Website\n ")
-        self.titulo["font"] = ("Arial", "10", "bold")
-        self.titulo.pack()
+        self.title = Label(self.window, text = "Bem vindo ao Hunter Website\n ", background = "#D8EEEB")
+        self.title["font"] = ("Arial", "10", "bold")
+        self.title.pack()
 
-        self.c2 = Frame(self.mestre)
-        self.c2.pack()
-        self.botao_registro = Button(self.c2, text = "Registro")
-        self.botao_registro["command"] = self.abrir_registro
-        self.botao_registro.pack()
+        self.button_frame = Frame(self.master, background = "#D8EEEB")
+        self.button_frame.config(bg = "#D8EEEB")
+        self.button_frame.pack()
 
-        self.c3 = Frame(self.mestre)
-        self.c3.pack()
-        self.botao_login = Button(self.c3, text = "Login")
-        self.botao_login["command"] = self.abrir_login
-        self.botao_login.pack()
+        self.register_button = Button(self.button_frame, text = "Registro", background = "gray")
+        self.register_button["command"] = self.open_register
+        self.register_button.pack(side = "left", padx = 30)
+
+        self.login_button = Button(self.button_frame, text = "Login", background = "gray")
+        self.login_button["command"] = self.open_login
+        self.login_button.pack(side = "right", padx = 30)
 
 
-    def abrir_registro(self):
-        raiz_registro = Tk()
-        Register(raiz_registro, False, None)
-        raiz_registro.mainloop()
+    def open_register(self):
+        register_root = Tk()
+        Register(register_root, False, None)
+        register_root.mainloop()
 
-    def abrir_login(self):
-        raiz_login = Tk()
-        Login(raiz_login)
-        raiz_login.mainloop()
+    def open_login(self):
+        login_root = Tk()
+        Login(login_root)
+        login_root.mainloop()
 
 if __name__ == "__main__":
-    raiz = Tk()
-    Website(raiz)
-    raiz.mainloop()
+    root = Tk()
+    Website(root)
+    root.mainloop()

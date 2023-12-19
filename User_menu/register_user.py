@@ -4,92 +4,93 @@ from Subjects.user import User
 import pickle
 
 class Register:
-    def __init__(self, mestre, change, user_name):
-        self.mestre = mestre
+    def __init__(self, master, change, user_name):
+        self.master = master
         self.change = change
         self.user_name = user_name
         self.list_users = []
         self.file_name = "Pickle_files\list_register.txt"
-        self.c1 = Frame(self.mestre)
-        self.c1["padx"] = 100
-        self.c1["pady"] = 10
-        self.c1.pack()
 
-        self.titulo = Label(self.c1, text = "Registro")
-        self.titulo["font"] = ("Arial", "10", "bold")
-        self.titulo.pack()
+        self.window = Frame(self.master)
+        self.window["padx"] = 100
+        self.window["pady"] = 10
+        self.window.pack()
 
-        self.c2 = Frame(self.mestre)
-        self.c2.pack()
-        self.t2 = Label(self.c2, text = "nome de usuario")
-        self.t2.pack(side = LEFT)
-        self.l2 = Entry(self.c2)
-        self.l2.pack(side = LEFT)
+        self.title = Label(self.window, text = "Registro")
+        self.title["font"] = ("Arial", "10", "bold")
+        self.title.pack()
 
-        self.c3 = Frame(self.mestre)
-        self.c3.pack()
-        self.t3 = Label(self.c3, text = "senha")
-        self.t3.pack(side = LEFT)
-        self.l3 = Entry(self.c3)
-        self.l3.pack(side = LEFT)
+        self.user_frame = Frame(self.master)
+        self.user_frame.pack()
+        self.user_label = Label(self.user_frame, text = "nome de usuario")
+        self.user_label.pack(side = LEFT)
+        self.user_entry = Entry(self.user_frame)
+        self.user_entry.pack(side = LEFT)
 
-        self.c4 = Frame(self.mestre)
-        self.c4.pack()
-        self.t4 = Label(self.c4, text = "Data do exame hunter")
-        self.t4.pack(side = LEFT)
-        self.l4 = Entry(self.c4)
-        self.l4.pack(side = LEFT)
+        self.password_frame = Frame(self.master)
+        self.password_frame.pack()
+        self.password_label = Label(self.password_frame, text = "senha")
+        self.password_label.pack(side = LEFT)
+        self.password_entry = Entry(self.password_frame)
+        self.password_entry.pack(side = LEFT)
 
-        self.c5 = Frame(self.mestre)
-        self.c5.pack()
-        self.t5 = Label(self.c5, text = "Categoria")
-        self.t5.pack(side = LEFT)
-        self.l5 = Entry(self.c5)
-        self.l5.pack(side = LEFT)
+        self.hunter_date_frame = Frame(self.master)
+        self.hunter_date_frame.pack()
+        self.hunter_date_label = Label(self.hunter_date_frame, text = "Data do exame hunter")
+        self.hunter_date_label.pack(side = LEFT)
+        self.hunter_date_entry = Entry(self.hunter_date_frame)
+        self.hunter_date_entry.pack(side = LEFT)
 
-        self.c6 = Frame(self.mestre)
-        self.c6.pack()
-        self.t6 = Label(self.c6, text = "Nome")
-        self.t6.pack(side = LEFT)
-        self.l6 = Entry(self.c6)
-        self.l6.pack(side = LEFT)
+        self.category_frame = Frame(self.master)
+        self.category_frame.pack()
+        self.category_label = Label(self.category_frame, text = "Categoria")
+        self.category_label.pack(side = LEFT)
+        self.category_entry= Entry(self.category_frame)
+        self.category_entry.pack(side = LEFT)
 
-        self.c7 = Frame(self.mestre)
-        self.c7.pack()
-        self.t7 = Label(self.c7, text = "Data de nascimento")
-        self.t7.pack(side = LEFT)
-        self.l7 = Entry(self.c7)
-        self.l7.pack(side = LEFT)
+        self.name_frame = Frame(self.master)
+        self.name_frame.pack()
+        self.name_label = Label(self.name_frame, text = "Nome")
+        self.name_label.pack(side = LEFT)
+        self.name_entry = Entry(self.name_frame)
+        self.name_entry.pack(side = LEFT)
+
+        self.date_frame = Frame(self.master)
+        self.date_frame.pack()
+        self.date_label = Label(self.date_frame, text = "Data de nascimento")
+        self.date_label.pack(side = LEFT)
+        self.date_entry = Entry(self.date_frame)
+        self.date_entry.pack(side = LEFT)
 
 
-        self.c4 = Frame(self.mestre)
-        self.c4.pack()
-        self.botao = Button(self.c4, text = "Autenticar")
-        self.botao["command"] = self.autenticar
-        self.botao.pack()
+        self.button_frame = Frame(self.master)
+        self.button_frame.pack()
+        self.button = Button(self.button_frame, text = "Autenticar")
+        self.button["command"] = self.autenticate
+        self.button.pack()
     
     
 
-    def autenticar(self):
+    def autenticate(self):
         self.username_in = False
-        self.username = self.l2.get()
-        self.password = self.l3.get()
-        self.hunter_exam_date = self.l4.get()
-        self.category = self.l5.get()
-        self.name = self.l6.get()
-        self.birth_date = self.l7.get()
+
+        self.username = self.user_entry.get()
+        self.password = self.password_entry.get()
+        self.hunter_exam_date = self.hunter_date_entry.get()
+        self.category = self.category_entry.get()
+        self.name = self.name_entry.get()
+        self.birth_date = self.date_entry.get()
 
         self.update_register()
 
         if self.change:
-            print("Chegou aqui")  
             self.delete_register()
 
     
         if self.verify_register() == False:
 
             try:
-                self.registrar(self.username, self.password, self.hunter_exam_date, self.category, self.name, self.birth_date)
+                self.register(self.username, self.password, self.hunter_exam_date, self.category, self.name, self.birth_date)
                 messagebox.showinfo("Sucesso","Registro autenticado.")
             except FileNotFoundError:
                 messagebox.showinfo("Arquivo inexistente",f"O arquivo {self.file_name} não foi encontrado.")
@@ -98,7 +99,7 @@ class Register:
             messagebox.showinfo("Erro de autenticação", "nome de usuário já presente no arquivo")
 
 
-    def registrar(self, username, password, hunter_exam_date, category, name, birth_date):
+    def register(self, username, password, hunter_exam_date, category, name, birth_date):
        
         with open(self.file_name, 'wb') as file:
             new_user = User(username, password, hunter_exam_date, category, name, birth_date )

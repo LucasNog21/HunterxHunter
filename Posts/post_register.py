@@ -9,7 +9,7 @@ import os
 class Post_register:
     def __init__(self, master):
         self.master = master
-        self.master.title("Exemplo de Imagem")
+        self.master.title("Post")
 
         self.c1 = Frame(self.master)
         self.c1["padx"] = 100
