@@ -4,64 +4,64 @@ from Subjects.treath import Treath
 import pickle
 
 class Treath_register:
-    def __init__(self, mestre):
-        self.mestre = mestre
+    def __init__(self, master):
+        self.master = master
         self.file_name_treaths = "Pickle_files\list_treaths.txt"
         self.list_treaths = []
-        self.c1 = Frame(self.mestre)
-        self.c1["padx"] = 100
-        self.c1["pady"] = 10
-        self.c1.pack()
+        self.window = Frame(self.master)
+        self.window["padx"] = 100
+        self.window["pady"] = 10
+        self.window.pack()
 
-        self.titulo = Label(self.c1, text = "Registro de ameaça")
-        self.titulo["font"] = ("Arial", "10", "bold")
-        self.titulo.pack()
+        self.title = Label(self.window, text = "Registro de ameaça")
+        self.title["font"] = ("Arial", "10", "bold")
+        self.title.pack()
 
-        self.c2 = Frame(self.mestre)
-        self.c2.pack()
-        self.t2 = Label(self.c2, text = "nome da ameaça")
-        self.t2.pack(side = LEFT)
-        self.l2 = Entry(self.c2)
-        self.l2.pack(side = LEFT)
+        self.name_frame = Frame(self.master)
+        self.name_frame.pack()
+        self.name_label = Label(self.name_frame, text = "nome da ameaça")
+        self.name_label.pack(side = LEFT)
+        self.name_entry = Entry(self.name_frame)
+        self.name_entry.pack(side = LEFT)
 
-        self.c3 = Frame(self.mestre)
-        self.c3.pack()
-        self.t3 = Label(self.c3, text = "Espécie da ameaça")
-        self.t3.pack(side = LEFT)
-        self.l3 = Entry(self.c3)
-        self.l3.pack(side = LEFT)
+        self.specie_frame = Frame(self.master)
+        self.specie_frame.pack()
+        self.specie_label = Label(self.specie_frame, text = "Espécie da ameaça")
+        self.specie_label.pack(side = LEFT)
+        self.specie_entry = Entry(self.specie_frame)
+        self.specie_entry.pack(side = LEFT)
 
-        self.c4 = Frame(self.mestre)
-        self.c4.pack()
-        self.t4 = Label(self.c4, text = "Nível da ameaça")
-        self.t4.pack(side = LEFT)
-        self.l4 = Entry(self.c4)
-        self.l4.pack(side = LEFT)
+        self.level_frame = Frame(self.master)
+        self.level_frame.pack()
+        self.level_label = Label(self.level_frame, text = "Nível da ameaça")
+        self.level_label.pack(side = LEFT)
+        self.level_entry = Entry(self.level_frame)
+        self.level_entry.pack(side = LEFT)
 
-        self.c5 = Frame(self.mestre)
-        self.c5.pack()
-        self.t5 = Label(self.c5, text = "Ameaça utiliza nen: S/N")
-        self.t5.pack(side = LEFT)
-        self.l5 = Entry(self.c5)
-        self.l5.pack(side = LEFT)
+        self.nen_frame = Frame(self.master)
+        self.nen_frame.pack()
+        self.nen_label = Label(self.nen_frame, text = "Ameaça utiliza nen: S/N")
+        self.nen_label.pack(side = LEFT)
+        self.nen_entry = Entry(self.nen_frame)
+        self.nen_entry.pack(side = LEFT)
 
 
-        self.c4 = Frame(self.mestre)
-        self.c4.pack()
-        self.botao = Button(self.c4, text = "Registrar")
-        self.botao["command"] = self.autenticar
-        self.botao.pack()
+        self.button_frame = Frame(self.master)
+        self.button_frame.pack()
+        self.button_register = Button(self.c4, text = "Registrar")
+        self.button_register["command"] = self.autenticate
+        self.button_register.pack()
     
-    def autenticar(self):
-        self.name = self.l2.get()
-        self.specie = self.l3.get()
-        self.level = self.l4.get()
-        self.nen = self.l5.get()
+    def autenticate(self):
+        self.name = self.name_entry.get()
+        self.specie = self.specie_entry.get()
+        self.level = self.level_entry.get()
+        self.nen = self.nen_entry.get()
         self.specie_in = False    
 
         self.update_register()
         self.verify_register()
-        
+
         if self.verify_register() == False:
 
             try:
@@ -101,6 +101,6 @@ class Treath_register:
             return False
         
 if __name__ == "__main__":
-    raiz = Tk()
-    Treath_register(raiz)
-    raiz.mainloop()
+    root = Tk()
+    Treath_register(root)
+    root.mainloop()

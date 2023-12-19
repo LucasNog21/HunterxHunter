@@ -11,60 +11,58 @@ class Post_register:
         self.master = master
         self.master.title("Post")
 
-        self.c1 = Frame(self.master)
-        self.c1["padx"] = 100
-        self.c1["pady"] = 10
-        self.c1.pack()
+        self.window = Frame(self.master)
+        self.window["padx"] = 100
+        self.window["pady"] = 10
+        self.window.pack()
 
-        self.titulo = Label(self.c1, text = "Registro de post")
-        self.titulo["font"] = ("Arial", "10", "bold")
-        self.titulo.pack()
+        self.title = Label(self.window, text = "Registro de post")
+        self.title["font"] = ("Arial", "10", "bold")
+        self.title.pack()
 
-        self.c2 = Frame(self.master)
-        self.c2.pack()
-        self.t2 = Label(self.c2, text = "Titulo")
-        self.t2.pack(side = LEFT)
-        self.l2 = Entry(self.c2)
-        self.l2.pack(side = LEFT)
+        self.title_frame = Frame(self.master)
+        self.title_frame.pack()
+        self.title_label = Label(self.title_frame, text = "Titulo")
+        self.title_label.pack(side = LEFT)
+        self.title_entry = Entry(self.title_frame)
+        self.title_entry.pack(side = LEFT)
 
-        self.c3 = Frame(self.master)
-        self.c3.pack()
-        self.t3 = Label(self.c3, text = "Categoria")
-        self.t3.pack(side = LEFT)
-        self.l3 = Entry(self.c3)
-        self.l3.pack(side = LEFT)
+        self.category_frame = Frame(self.master)
+        self.category_frame.pack()
+        self.category_label = Label(self.category_frame, text = "Categoria")
+        self.category_label.pack(side = LEFT)
+        self.category_entry = Entry(self.category_frame)
+        self.category_entry.pack(side = LEFT)
 
-        self.c5 = Frame(self.master)
-        self.c5.pack()
-        self.t5 = Label(self.c5, text = "Descrição")
-        self.t5.pack(side = LEFT)
-        self.l5 = Entry(self.c5)
-        self.l5.pack(side = LEFT)
+        self.description_frame = Frame(self.master)
+        self.description_frame.pack()
+        self.description_label = Label(self.description_frame, text = "Descrição")
+        self.description_label.pack(side = LEFT)
+        self.description_entry = Entry(self.description_frame)
+        self.description_entry.pack(side = LEFT)
 
-        self.c6 = Frame(self.master)
-        self.c6.pack()
-        self.t6 = Label(self.c6, text = "Nome")
-        self.t6.pack(side = LEFT)
-        self.l6 = Entry(self.c6)
-        self.l6.pack(side = LEFT)
+        self.name_frame = Frame(self.master)
+        self.name_frame.pack()
+        self.name_label = Label(self.name_frame, text = "Nome")
+        self.name_label.pack(side = LEFT)
+        self.name_entry = Entry(self.name_frame)
+        self.name_entry.pack(side = LEFT)
 
         self.c4 = Frame(self.master)
         self.c4.pack()
         self.botao = Button(self.c4, text = "Postar")
-        self.botao["command"] = self.postar
+        self.botao["command"] = self.posting
         self.botao.pack()
 
-        self.c5 = Frame(self.master)
-        self.c5.pack()
-        self.botao = Button(self.c5, text = "redefinir imagem")
-        self.botao["command"] = self.open_link
-        self.botao.pack()
+        self.button_frame = Frame(self.master)
+        self.button_frame.pack()
+        self.button_size = Button(self.button_frame, text = "redefinir imagem")
+        self.button_size["command"] = self.open_link
+        self.button_size.pack()
 
-        self.c6 = Frame(self.master)
-        self.c6.pack()
-        self.botao = Button(self.c6, text = "Importar imagem")
-        self.botao["command"] = self.import_image
-        self.botao.pack()
+        self.button_import = Button(self.button_frame, text = "Importar imagem")
+        self.button_import ["command"] = self.import_image
+        self.button_import .pack()
     
     def import_image(self):
         file_path = filedialog.askopenfilename()
@@ -84,23 +82,23 @@ class Post_register:
         webbrowser.open(link)
     
 
-    def postar(self):
-        self.title = self.l2.get()
-        self.category = self.l3.get()
-        self.description = self.l5.get()
-        self.name = self.l6.get()
+    def posting(self):
+        self.title = self.title_entry.get()
+        self.category = self.category_entry.get()
+        self.description = self.description_entry.get()
+        self.name = self.name_entry.get()
 
         self.open_post()
 
 
     def open_post(self):
-        raiz = Tk()
-        posts = Post(raiz, self.title, self.category, self.image_object, self.description, self.name)
-        raiz.mainloop()
+        root = Tk()
+        posts = Post(root, self.title, self.category, self.image_object, self.description, self.name)
+        root.mainloop()
 
 if __name__ == "__main__":
-    raiz = Tk()
-    posts = Post_register(raiz)
-    raiz.mainloop()
+    root = Tk()
+    posts = Post_register(root)
+    root.mainloop()
 
 

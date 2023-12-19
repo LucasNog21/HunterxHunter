@@ -42,6 +42,6 @@ class Post:
         self.master.geometry(f"{width}x{height}")
     
 if __name__ == "__main__":
-    raiz = Tk()
-    app = Post(raiz, "Teste", "Ameaça", "Images\image500x600.jpg", "Muito bacana", "Lucas")
-    raiz.mainloop()
+    root = Tk()
+    app = Post(root, "Teste", "Ameaça", "Images\image500x600.jpg", "Muito bacana", "Lucas")
+    root.mainloop()

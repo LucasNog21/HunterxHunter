@@ -4,42 +4,42 @@ from Post_login_menu.menu_login import Menu_login
 import pickle
 
 class Login:
-    def __init__(self, mestre):
-        self.mestre = mestre
+    def __init__(self, master):
+        self.master = master
         self.file_name = "Pickle_files\list_register.txt"
         self.list_users = []
-        self.c1 = Frame(self.mestre)
-        self.c1["padx"] = 100
-        self.c1["pady"] = 10
-        self.c1.pack()
+        self.window = Frame(self.master)
+        self.window["padx"] = 100
+        self.window["pady"] = 10
+        self.window.pack()
 
-        self.titulo = Label(self.c1, text = "Login")
-        self.titulo["font"] = ("Arial", "10", "bold")
-        self.titulo.pack()
+        self.title = Label(self.window, text = "Login")
+        self.title["font"] = ("Arial", "10", "bold")
+        self.title.pack()
 
-        self.c2 = Frame(self.mestre)
-        self.c2.pack()
-        self.t2 = Label(self.c2, text = "Nome de usuario")
-        self.t2.pack(side = LEFT)
-        self.l2 = Entry(self.c2)
-        self.l2.pack(side = LEFT)
+        self.user_frame = Frame(self.master)
+        self.user_frame.pack()
+        self.user_label = Label(self.user_frame, text = "nome de usuario")
+        self.user_label.pack(side = LEFT)
+        self.user_entry = Entry(self.user_frame)
+        self.user_entry.pack(side = LEFT)
 
-        self.c3 = Frame(self.mestre)
-        self.c3.pack()
-        self.t3 = Label(self.c3, text = "Senha")
-        self.t3.pack(side = LEFT)
-        self.l3 = Entry(self.c3)
-        self.l3.pack(side = LEFT)
+        self.password_frame = Frame(self.master)
+        self.password_frame.pack()
+        self.password_label = Label(self.password_frame, text = "senha")
+        self.password_label.pack(side = LEFT)
+        self.password_entry = Entry(self.password_frame)
+        self.password_entry.pack(side = LEFT)
 
-        self.c4 = Frame(self.mestre)
-        self.c4.pack()
-        self.botao = Button(self.c4, text = "Autenticar")
-        self.botao["command"] = self.logar
-        self.botao.pack()
+        self.button_frame = Frame(self.master)
+        self.button_frame.pack()
+        self.button = Button(self.button_frame, text = "Autenticar")
+        self.button["command"] = self.login
+        self.button.pack()
 
-    def logar(self):
-        self.username = self.l2.get()
-        self.password = self.l3.get()
+    def login(self):
+        self.username = self.user_entry.get()
+        self.password = self.password_entry.get()
         self.username_in = False
         self.password_in = False
         
@@ -50,9 +50,9 @@ class Login:
 
             messagebox.showinfo("Sucesso","Seu login foi um sucesso")
             self.mestre.destroy()
-            raiz_menu_login = Tk()
-            Menu_login(raiz_menu_login, self.username)
-            raiz_menu_login.mainloop()
+            menu_login_root = Tk()
+            Menu_login(menu_login_root, self.username)
+            menu_login_root.mainloop()
         else:
             messagebox.showinfo("Falha no login","Usuário e/ou senha não presente(s) no arquivo. Tente novamente")
     
@@ -73,13 +73,8 @@ class Login:
                     if user.get_password() == self.password:
                         self.password_in = True
 
-    def abrir_menu(self):
-            raiz_menu = Tk()
-            Menu_login(raiz_menu, self.username, self.password)
-            raiz_menu.mainloop()
-
 
 if __name__ == "__main__":
-    raiz = Tk()
-    Login(raiz)
-    raiz.mainloop()
+    root = Tk()
+    Login(root)
+    root.mainloop()
