@@ -48,7 +48,7 @@ class Treath_register:
 
         self.button_frame = Frame(self.master)
         self.button_frame.pack()
-        self.button_register = Button(self.c4, text = "Registrar")
+        self.button_register = Button(self.button_frame, text = "Registrar")
         self.button_register["command"] = self.autenticate
         self.button_register.pack()
     

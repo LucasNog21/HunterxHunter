@@ -39,11 +39,11 @@ class Menu_login:
         self.button_exibition_treaths["command"] = self.exibition_treaths
         self.button_exibition_treaths.pack(side = "left")
 
-        self.button_change_register = Button(self.c5, text = "Mudar registro")
+        self.button_change_register = Button(self.button_frame_2, text = "Mudar registro")
         self.button_change_register["command"] = self.change_register
         self.button_change_register.pack(side ="right")
 
-        self.button_frame_3 = Frame(self.mestre)
+        self.button_frame_3 = Frame(self.master)
         self.button_frame_3.pack()
         self.button_post_register = Button(self.button_frame_3, text = "Post")
         self.button_post_register["command"] = self.open_post_register

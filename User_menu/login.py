@@ -49,7 +49,7 @@ class Login:
         if self.username_in and self.password_in:
 
             messagebox.showinfo("Sucesso","Seu login foi um sucesso")
-            self.mestre.destroy()
+            self.master.destroy()
             menu_login_root = Tk()
             Menu_login(menu_login_root, self.username)
             menu_login_root.mainloop()
