@@ -1,20 +1,21 @@
 from tkinter import *
-from Posts.post import Post
-import webbrowser
+from tkinter import messagebox
+from Reports.data_report import Data_report
+import pickle
 
-class Post_register:
+class Report_register:
     def __init__(self, master):
         self.master = master
         self.master.title("Post")
-        self.file_types = [("Arquivos de Imagem", "*.png;*.jpg;*.jpeg;*.gif")]
-        self.image_object = None
+        self.list_reports = []
+        self.file_name = "Pickle_files\list_reports.txt"
 
         self.window = Frame(self.master)
         self.window["padx"] = 100
         self.window["pady"] = 10
         self.window.pack()
 
-        self.title = Label(self.window, text = "Registro de post")
+        self.title = Label(self.window, text = "Registro de relato")
         self.title["font"] = ("Arial", "10", "bold")
         self.title.pack()
 
@@ -46,51 +47,34 @@ class Post_register:
         self.name_entry = Entry(self.name_frame)
         self.name_entry.pack(side = LEFT)
 
-        self.image_frame = Frame(self.master)
-        self.image_frame.pack()
-        self.image_label = Label(self.image_frame, text = "file_image")
-        self.image_label.pack(side = LEFT)
-        self.image_entry = Entry(self.image_frame)
-        self.image_entry.pack(side = LEFT)
 
-        self.button_post_frame = Frame(self.master)
-        self.button_post_frame.pack()
-        self.button_post = Button(self.button_post_frame, text = "Postar")
-        self.button_post["command"] = self.posting
-        self.button_post.pack()
+        self.button_report_frame = Frame(self.master)
+        self.button_report_frame.pack()
+        self.button_report = Button(self.button_report_frame, text = "Postar")
+        self.button_report["command"] = self.reporting
+        self.button_report.pack()
 
-        self.button_frame = Frame(self.master)
-        self.button_frame.pack()
-        self.button_size = Button(self.button_frame, text = "redefinir imagem")
-        self.button_size["command"] = self.open_link
-        self.button_size.pack()
-        
-
-        self.button_import = Button(self.button_frame, text = "Importar imagem")
-        self.button_import ["command"] = self.import_image
-        self.button_import .pack()
-    
-    def open_link(self):
-        link = "https://www.befunky.com/pt/criar/editor-de-fotos/"
-        webbrowser.open(link)
-    
-
-    def posting(self):
+    def reporting(self):
         self.title = self.title_entry.get()
         self.category = self.category_entry.get()
         self.description = self.description_entry.get()
         self.name = self.name_entry.get()
-        self.file_image = self.image_entry.get()
-
-        self.open_post()
 
 
-    def open_post(self):
-        root = Tk()
-        posts = Post(root, self.title, self.category, self.file_image, self.description, self.name)
-        root.mainloop()
+        self.report_register()
+        messagebox.showinfo("Sucesso","Registro autenticado.")
+        self.master.destroy()    
+
+
+    def report_register(self):
+        
+        with open(self.file_name, 'wb') as file:
+            new_report = Data_report(self.title, self.category, self.description, self.name)
+            self.list_reports.append(new_report)
+            pickle.dump(self.list_reports, file)
+            file.close()
 
 if __name__ == "__main__":
     root = Tk()
-    posts = Post_register(root)
+    posts = Report_register(root)
     root.mainloop()
