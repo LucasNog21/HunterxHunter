@@ -65,9 +65,20 @@ class Report_register:
         messagebox.showinfo("Sucesso","Registro autenticado.")
         self.master.destroy()    
 
+    def update_reports(self):
+        self.list_reports = []
+        with open(self.file_name, 'rb') as file:
+            while True:
+                try:
+                    self.list_reports = pickle.load(file)
+
+                except EOFError:
+                    break
+
 
     def report_register(self):
         
+        self.update_reports()
         with open(self.file_name, 'wb') as file:
             new_report = Data_report(self.title, self.category, self.description, self.name)
             self.list_reports.append(new_report)
