@@ -1,10 +1,13 @@
 from tkinter import *
+from Posts.post import Post
 import webbrowser
 
 class Post_register:
     def __init__(self, master):
         self.master = master
         self.master.title("Post")
+        self.file_types = [("Arquivos de Imagem", "*.png;*.jpg;*.jpeg;*.gif")]
+        self.image_object = None
 
         self.window = Frame(self.master)
         self.window["padx"] = 100
@@ -63,6 +66,9 @@ class Post_register:
         self.button_size.pack()
         
 
+        self.button_import = Button(self.button_frame, text = "Importar imagem")
+        self.button_import ["command"] = self.import_image
+        self.button_import .pack()
     
     def open_link(self):
         link = "https://www.befunky.com/pt/criar/editor-de-fotos/"
@@ -88,5 +94,3 @@ if __name__ == "__main__":
     root = Tk()
     posts = Post_register(root)
     root.mainloop()
-
-

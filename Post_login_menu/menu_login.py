@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 from Post_login_menu.register_treath import Treath_register
-from HunterxHunter.Posts.post_register import Post_register
+from HunterxHunter.post_register import Post_register
 from Post_login_menu.user_page import User_page
 
 import pickle
