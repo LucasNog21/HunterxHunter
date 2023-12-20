@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from Post_login_menu.register_treath import Treath_register
 from Post_login_menu.user_page import User_page
-from HunterxHunter.menu_report import Menu_report
+from Reports.menu_report import Menu_report
 
 import pickle
 

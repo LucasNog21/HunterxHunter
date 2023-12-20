@@ -55,3 +55,27 @@ class Post:
             relative_path = os.path.normpath(relative_path)
             print(relative_path)
             self.image_object = PhotoImage(file=r"{}".format(relative_path))
+
+
+
+
+def button_generate(self):
+        for report in self.list_reports:
+            self.button_frame = Frame(self.master)
+            self.button_frame.pack()
+
+            self.button = Button(self.button_frame, text = report.title)
+            self.button["command"] = self.find_title_button
+            self.button.pack(side = "left")
+    
+    def find_title_button(self):
+        for report in self.list_reports:
+            for widget in self.master.winfo_children():
+                if isinstance(widget, Button) and widget["text"] == report.title:
+                    widget["command"] = self.open_report(report.title, report.category, report.description, report.name)
+
+
+
+    def open_report(self,title,category,description,name):
+        new_window = Toplevel(self.master)
+        Report(new_window,title, category, description, name)
