@@ -1,4 +1,3 @@
-from calendar import c
 from tkinter import *
 from User_menu.register_user import Register
 
