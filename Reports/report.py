@@ -33,7 +33,7 @@ class Report:
         self.description_frame = Frame(self.window)
         self.description_frame.pack()
 
-        self.text_label = Label(text = self.description, width = 50, wraplength = 250, justify = "center")
+        self.text_label = Label(self.description_frame, text = self.description, width = 50, wraplength = 250, justify = "center")
         self.text_label.pack()
  
 

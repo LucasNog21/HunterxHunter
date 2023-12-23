@@ -60,6 +60,9 @@ class Treath_register:
                 self.master.destroy()
             except FileNotFoundError:
                 messagebox.showinfo("Arquivo inexistente",f"O arquivo {self.file_name_treaths} não foi encontrado.")
+        
+        else: 
+            messagebox.showinfo("Falha", "Registro de ameaça já existente")
 
 
     def register(self):

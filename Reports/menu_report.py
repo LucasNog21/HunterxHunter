@@ -37,21 +37,13 @@ class Menu_report:
             self.button_frame = Frame(self.master)
             self.button_frame.pack()
 
-            # Usar lambda para passar os parâmetros para a função find_title_button
-            self.button = Button(self.button_frame, text=report.title, command=lambda r=report: self.find_title_button(r))
+            self.button = Button(self.button_frame, text=report.title, command=lambda r=report: self.open_report(r))
             self.button.pack(side="left")
 
-    def find_title_button(self, report):
-        new_window = Toplevel(self.master)
-        for report in range(len(self.list_reports)):
-            if report == self.list_reports[report]:
-                Report(new_window, self.list_reports[report].title, self.list_reports[report].category, self.list_reports[report].description, self.list_reports[report].name)
-
-
-
-    def open_report(self,title,category,description,name):
-        new_window = Toplevel(self.master)
-        Report(new_window,title, category, description, name)
+    
+    def open_report(self,report):
+        root = Tk()
+        Report(root,report.title, report.category, report.description, report.get_name())
 
 
     def open_register_report(self):

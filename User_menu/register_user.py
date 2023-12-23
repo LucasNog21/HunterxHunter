@@ -18,7 +18,6 @@ class Register:
 
         else:
 
-
             self.window = Frame(self.master)
             self.window["padx"] = 100
             self.window["pady"] = 10
@@ -144,6 +143,7 @@ class Register:
             return False
     
     def delete_register(self):
+        messagebox.showinfo("Registro deletado",f"Registro deletado com sucesso")
         with open(self.file_name, 'rb') as file:
             self.list_users = pickle.load(file)
 
