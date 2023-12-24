@@ -1,5 +1,5 @@
 from tkinter import *
-from User_menu.register_user import Register
+from User_menu.register_user import Register_user
 from User_menu.login import Login
 
 class Website:
@@ -30,7 +30,7 @@ class Website:
 
     def open_register(self):
         self.master = Tk()
-        Register(self.master, False, None, False)
+        Register_user(self.master, False, None, False)
         self.master.mainloop()
 
     def open_login(self):

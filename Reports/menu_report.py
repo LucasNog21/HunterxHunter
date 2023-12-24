@@ -1,5 +1,4 @@
 from tkinter import *
-from tkinter import messagebox
 from Reports.Register_report import Report_register
 from Reports.report import Report
 import pickle
@@ -9,6 +8,7 @@ class Menu_report:
         self.master = master
         self.file_name = "Pickle_files\list_reports.txt"
         self.list_reports = []
+        self.generate = False
 
         self.window = Frame(self.master)
         self.window["padx"] = 100
@@ -30,15 +30,17 @@ class Menu_report:
         self.button_open_reports["command"] = self.open_register_report
         self.button_open_reports.pack(side = "right")
 
-        self.button_generate()
 
     def button_generate(self):
-        for report in self.list_reports:
-            self.button_frame = Frame(self.master)
-            self.button_frame.pack()
+        if self.generate == False:
+            for report in self.list_reports:
+                self.button_frame = Frame(self.master)
+                self.button_frame.pack()
 
-            self.button = Button(self.button_frame, text=report.title, command=lambda r=report: self.open_report(r))
-            self.button.pack(side="left")
+                self.button = Button(self.button_frame, text=report.title, command=lambda r=report: self.open_report(r))
+                self.button.pack(side="left")
+        self.generate = True
+
 
     
     def open_report(self,report):

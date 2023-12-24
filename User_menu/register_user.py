@@ -3,7 +3,7 @@ from tkinter import messagebox
 from Subjects.user import User
 import pickle
 
-class Register:
+class Register_user:
     def __init__(self, master, change, user_name, delete):
 
         self.master = master
@@ -157,5 +157,5 @@ class Register:
 
 if __name__ == "__main__":
     raiz = Tk()
-    Register(raiz)
+    Register_user(raiz)
     raiz.mainloop()

@@ -1,5 +1,5 @@
 from tkinter import *
-from User_menu.register_user import Register
+from User_menu.register_user import Register_user
 
 class User_page:
     def __init__(self, master, user_name):
@@ -31,11 +31,11 @@ class User_page:
 
     def delete_register(self):
         register_root = Tk()
-        Register(register_root, False, self.user_name, True)
+        Register_user(register_root, False, self.user_name, True)
         register_root.mainloop()
 
 
     def change_register(self):
         register_root = Tk()
-        Register(register_root, True, self.user_name, False)
+        Register_user(register_root, True, self.user_name, False)
         register_root.mainloop()
