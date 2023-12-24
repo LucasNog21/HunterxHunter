@@ -74,7 +74,7 @@ class Menu_login:
         exibition = ''
         for user in self.list_users:
             if user and hasattr(user, 'username'):
-                exibition += "Nome: " + user.name + " usuário: " + user.username + '\n'
+                exibition += "Usuário"+str(self.list_users.index(user)+1) + '\n' "Nome: " + user.name + '\n' " Usuário: " + user.username + '\n' " Categoria: " + user.category + '\n' " Data do exame: " + user.hunter_exam_date + '\n\n'
 
     
         self.top = Toplevel()
@@ -104,7 +104,7 @@ class Menu_login:
         exibition = ''
         for treath in self.list_treaths:
             if treath and hasattr(treath, 'name'):
-                exibition += treath.name + " nível: "+ treath.get_level() + '\n'
+                exibition += "Ameaça"+str(self.list_treaths.index(treath)+1) + '\n' +"Nome: " + treath.name + '\n' + "Espécie:" + treath.specie + '\n' " Nível: "+ treath.get_level()  + '\n\n'
 
     
         self.top = Toplevel()
