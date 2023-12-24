@@ -1,13 +1,14 @@
 from tkinter import *
 from tkinter import messagebox
 from Reports.data_report import Data_report
+from Subjects.register import Register
 import pickle
 
-class Report_register:
+class Report_register(Register):
     def __init__(self, master):
-        self.master = master
+        super().__init__(master)
         self.master.title("Post")
-        self.list_reports = []
+        self.list = []
         self.file_name = "Pickle_files\list_reports.txt"
 
         self.window = Frame(self.master)
@@ -51,38 +52,26 @@ class Report_register:
         self.button_report_frame = Frame(self.master)
         self.button_report_frame.pack()
         self.button_report = Button(self.button_report_frame, text = "Postar")
-        self.button_report["command"] = self.reporting
+        self.button_report["command"] = self.autenticate
         self.button_report.pack()
 
-    def reporting(self):
+    def autenticate(self):
         self.title = self.title_entry.get()
         self.category = self.category_entry.get()
         self.description = self.description_entry.get()
         self.name = self.name_entry.get()
 
-
         self.report_register()
         messagebox.showinfo("Sucesso","Registro autenticado.")
         self.master.destroy()    
 
-    def update_reports(self):
-        self.list_reports = []
-        with open(self.file_name, 'rb') as file:
-            while True:
-                try:
-                    self.list_reports = pickle.load(file)
-
-                except EOFError:
-                    break
-
 
     def report_register(self):
-        
-        self.update_reports()
+        self.update_register()
         with open(self.file_name, 'wb') as file:
             new_report = Data_report(self.title, self.category, self.description, self.name)
-            self.list_reports.append(new_report)
-            pickle.dump(self.list_reports, file)
+            self.list.append(new_report)
+            pickle.dump(self.list, file)
             file.close()
 
 if __name__ == "__main__":

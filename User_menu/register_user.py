@@ -1,16 +1,16 @@
 from tkinter import *
 from tkinter import messagebox
 from Subjects.user import User
+from Subjects.register import Register
 import pickle
 
-class Register_user:
+class Register_user(Register):
     def __init__(self, master, change, user_name, delete):
-
-        self.master = master
+        super().__init__(master)
         self.change = change
         self.user_name = user_name
         self.delete = delete
-        self.list_users = []
+        self.list = []
         self.file_name = "Pickle_files\list_register.txt"
 
         if self.delete:
@@ -106,34 +106,18 @@ class Register_user:
             messagebox.showinfo("Erro de autenticação", "nome de usuário já presente no arquivo")
 
 
-    def verify_delete(self):
-        self.master.destroy()
-        self.delete_register()
-        messagebox.showinfo("Uma pena","Conta deletada.")
-
-
     def register(self):
     
         with open(self.file_name, 'wb') as file:
             new_user = User(self.username, self.password, self.hunter_exam_date, self.category, self.name, self.birth_date)
-            self.list_users.append(new_user)
-            pickle.dump(self.list_users, file)
+            self.list.append(new_user)
+            pickle.dump(self.list, file)
             file.close()
-
-    def update_register(self):
-        self.list_users = []
-        with open(self.file_name, 'rb') as file:
-            while True:
-                try:
-                    self.list_users = pickle.load(file)
-
-                except EOFError:
-                    break
 
     def verify_register(self):
 
-        if not self.list_users == []:
-            for user in self.list_users:
+        if not self.list == []:
+            for user in self.list:
                 if user.username == self.username:
                     self.username_in = True
                     return user
@@ -145,12 +129,12 @@ class Register_user:
     def delete_register(self):
         messagebox.showinfo("Registro deletado",f"Registro deletado com sucesso")
         with open(self.file_name, 'rb') as file:
-            self.list_users = pickle.load(file)
+            self.list = pickle.load(file)
 
-        self.list_users = [user for user in self.list_users if user.username != self.user_name]
+        self.list = [user for user in self.list if user.username != self.user_name]
 
         with open(self.file_name, 'wb') as file:
-            pickle.dump(self.list_users, file)
+            pickle.dump(self.list, file)
         self.master.destroy()
 
 

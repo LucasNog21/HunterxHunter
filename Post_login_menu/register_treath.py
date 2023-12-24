@@ -1,13 +1,14 @@
 from tkinter import *
 from tkinter import messagebox
 from Subjects.treath import Treath
+from Subjects.register import Register
 import pickle
 
-class Treath_register:
+class Treath_register(Register):
     def __init__(self, master):
-        self.master = master
-        self.file_name_treaths = "Pickle_files\list_treaths.txt"
-        self.list_treaths = []
+        super().__init__(master)
+        self.file_name = "Pickle_files\list_treaths.txt"
+        self.list = []
         self.window = Frame(self.master)
         self.window["padx"] = 100
         self.window["pady"] = 10
@@ -59,33 +60,24 @@ class Treath_register:
                 messagebox.showinfo("Sucesso","ameaça registrada.")
                 self.master.destroy()
             except FileNotFoundError:
-                messagebox.showinfo("Arquivo inexistente",f"O arquivo {self.file_name_treaths} não foi encontrado.")
+                messagebox.showinfo("Arquivo inexistente",f"O arquivo {self.file_name} não foi encontrado.")
         
         else: 
             messagebox.showinfo("Falha", "Registro de ameaça já existente")
 
 
     def register(self):
-        with open(self.file_name_treaths, 'wb') as file:
+        with open(self.file_name, 'wb') as file:
             treath = Treath(self.name, self.specie, self.level)
-            self.list_treaths.append(treath)
-            pickle.dump(self.list_treaths, file)
+            self.list.append(treath)
+            pickle.dump(self.list, file)
             file.close()
     
 
-    def update_register(self):
-        with open(self.file_name_treaths, 'rb') as file: 
-            while True:
-                try:
-                    self.list_treaths = pickle.load(file)
-    
-                except EOFError:
-                    break
-
     def verify_register(self):
 
-        if not self.list_treaths == []:
-            for treath in self.list_treaths:
+        if not self.list == []:
+            for treath in self.list:
                 if treath.name == self.name:
                     self.name_in = True
                     return treath
