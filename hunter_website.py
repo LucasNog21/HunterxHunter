@@ -1,10 +1,11 @@
 from tkinter import *
 from User_menu.register_user import Register_user
+from Subjects.menu import Menu
 from User_menu.login import Login
 
-class Website:
+class Website(Menu):
     def __init__(self,master):
-        self.master = master
+        super().__init__(master)
         self.master.title("HunterxHunter")
         self.window = Frame(self.master, background = "#D8EEEB")
         self.window["padx"] = 100
@@ -24,7 +25,7 @@ class Website:
         self.register_button.pack(side = "left", padx = 30)
 
         self.login_button = Button(self.button_frame, text = "Login", background = "gray")
-        self.login_button["command"] = self.open_login
+        self.login_button["command"] = lambda o=Login: self.open_file(o)
         self.login_button.pack(side = "right", padx = 30)
 
 
@@ -33,10 +34,6 @@ class Website:
         Register_user(self.master, False, None, False)
         self.master.mainloop()
 
-    def open_login(self):
-        self.master = Tk()
-        Login(self.master)
-        self.master.mainloop()
 
 if __name__ == "__main__":
     root = Tk()

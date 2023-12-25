@@ -1,13 +1,14 @@
 from tkinter import *
 from Reports.Register_report import Report_register
 from Reports.report import Report
+from Subjects.menu import Menu
 import pickle
 
-class Menu_report:
+class Menu_report(Menu):
     def __init__(self, master):
-        self.master = master
+        super().__init__(master)
         self.file_name = "Pickle_files\list_reports.txt"
-        self.list_reports = []
+        self.list = []
         self.generate = False
 
         self.window = Frame(self.master)
@@ -27,13 +28,13 @@ class Menu_report:
         self.button_exibition.pack(side = "left")
 
         self.button_open_reports = Button(self.button_frame_1, text = "Registrar relatos")
-        self.button_open_reports["command"] = self.open_register_report
+        self.button_open_reports["command"] = lambda o=Report_register: self.open_file(o)
         self.button_open_reports.pack(side = "right")
 
 
     def button_generate(self):
         if self.generate == False:
-            for report in self.list_reports:
+            for report in self.list:
                 self.button_frame = Frame(self.master)
                 self.button_frame.pack()
 
@@ -41,30 +42,12 @@ class Menu_report:
                 self.button.pack(side="left")
         self.generate = True
 
-
-    
     def open_report(self,report):
         root = Tk()
         Report(root,report.title, report.category, report.description, report.get_name())
 
-
-    def open_register_report(self):
-        root = Tk()
-        Report_register(root)
-        root.mainloop()
-
-    def update_report(self):
-        self.list_reports = []
-        with open(self.file_name, 'rb') as file:
-            while True:
-                try:
-                    self.list_reports = pickle.load(file)
-
-                except EOFError:
-                    break
-
     def exibition_report(self):
-        self.update_report()
+        self.update_register()
         self.button_generate() 
 
 if __name__ == "__main__":
