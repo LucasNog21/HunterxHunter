@@ -63,7 +63,7 @@ class Menu_login(Menu):
 
                 except EOFError:
                     break
-
+            file.close()
         exibition = ''
         for user in self.list_users:
             if user and hasattr(user, 'username'):
@@ -79,7 +79,7 @@ class Menu_login(Menu):
 
                 except EOFError:
                     break
-                
+            file.close()
         exibition = ''
         for treath in self.list_treaths:
             if treath and hasattr(treath, 'name'):
